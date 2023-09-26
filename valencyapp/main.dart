@@ -45,6 +45,50 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
+class PortfolioPage extends StatelessWidget {
+  @override
+}  // Contains the user portfolio - includes any open positions (short, put, call, etc)
+class WalletPage extends StatelessWidget {
+  @override
+}     // Contains the user wallet and balances + withdraw options
+class ExplorePage extends StatelessWidget {
+  @override
+}    // Contains all the cryptocurrencies - you can buy cryptocurrencies here / swap them for already owned assets
+class TradingPage extends StatelessWidget {
+  @override
+}    // Contains the users current (open) and previous (closed) positions + lets the user open new positions
+class SettingsPage extends StatelessWidget {
+  @override
+}   // Contains settings
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    if (appState.favorites.isEmpty) {
+      return Center(
+        child: Text('No favorites yet.'),
+      );
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('You have '
+              '${appState.favorites.length} favorites:'),
+        ),
+        for (var pair in appState.favorites)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+          ),
+      ],
+    );
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -63,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
       page = GeneratorPage();
     break;
     case 1:
-      page = Placeholder();
+      page = FavoritesPage();
     break;
     default:
       throw UnimplementedError('no widget for $selectedIndex');
