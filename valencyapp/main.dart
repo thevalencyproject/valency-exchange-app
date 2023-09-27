@@ -64,6 +64,9 @@ class TradingPage {
 class SettingsPage {
   @override
 }   // Contains settings
+class AddFundsPage {
+  @override
+}   // Contains Add Funds Page
 
 class MyHomePage extends StatefulWidget {
   @override
