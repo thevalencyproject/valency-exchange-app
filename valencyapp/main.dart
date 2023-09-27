@@ -67,6 +67,9 @@ class SettingsPage {
 class AddFundsPage {
   @override
 }   // Contains Add Funds Page
+class WithdrawFundsPage {
+  @override
+}   // Contains Withdraw Funds Page
 
 class MyHomePage extends StatefulWidget {
   @override
