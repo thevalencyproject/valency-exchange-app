@@ -28,19 +28,40 @@ class MyAppState extends ChangeNotifier {
   // Logic goes here
 }
 
-class PortfolioPage extends StatelessWidget {
+class PortfolioPage {
   @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('My Portfolio'),                                      // My Portfolio
+          child: Text('$' '${appState.userinfo.portfolioValue}'),           // $2000.00
+          if(appState.userinfo.isPortfolioValueUp) {
+            child: Icon();          // Up Arrow Icon
+            child: Text('+$' '${appState.userinfo.}' 'appState.filterinfo.scope'),
+          } else {
+            child: Icon();          // Down Arrow Icon
+            child: Text('${appState.userinfo.isPortfolioValueUp}' '$' ''),
+          }
+          
+        )
+      ]
+    )
+  }
 }  // Contains the user portfolio - includes any open positions (short, put, call, etc)
-class WalletPage extends StatelessWidget {
+class WalletPage {
   @override
 }     // Contains the user wallet and balances + withdraw options
-class ExplorePage extends StatelessWidget {
+class ExplorePage {
   @override
 }    // Contains all the cryptocurrencies - you can buy cryptocurrencies here / swap them for already owned assets
-class TradingPage extends StatelessWidget {
+class TradingPage {
   @override
 }    // Contains the users current (open) and previous (closed) positions + lets the user open new positions
-class SettingsPage extends StatelessWidget {
+class SettingsPage {
   @override
 }   // Contains settings
 
