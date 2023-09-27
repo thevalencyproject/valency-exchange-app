@@ -70,6 +70,9 @@ class AddFundsPage {
 class WithdrawFundsPage {
   @override
 }   // Contains Withdraw Funds Page
+class WithdrawAssetForFundsPage {
+  @override
+}   // Contains Withdraw Asset For Funds Page - Sell asset immediatly for funds - don't sell asset, get funds in account, then withdraw
 
 class MyHomePage extends StatefulWidget {
   @override
