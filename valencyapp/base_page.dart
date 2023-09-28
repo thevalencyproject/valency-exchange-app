@@ -18,6 +18,6 @@ class _BasePageState extends State<BasePage> {
 
   @override
   Widget build(BuildContext context) {
-  
+    return Scaffold(body:Padding(padding: const EdgeInsets.all(24.0)),);
   }
 }
