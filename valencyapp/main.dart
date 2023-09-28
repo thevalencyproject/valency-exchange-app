@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:valencyapp/base_page.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();                                                               // Ensures appp is initialized
+  WidgetsFlutterBinding.ensureInitialized();                                                               // Ensures app is initialized
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);                                  // Disables Bottom Bar and Status Bar
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);   // Ensures app runs in portrait
 
@@ -17,16 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'Valency',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        ),
-        home: MyHomePage(),
+    return MaterialApp(
+      title: 'Valency',
+      theme: ThemeData(
+        canvasColor: const Color.fromARGB(255, 255, 255, 255),
       ),
+      home: const BasePage(),
     );
   }
 }
