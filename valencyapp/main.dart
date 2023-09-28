@@ -1,8 +1,15 @@
+import 'dart:ffi';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+import 'package:valencyapp/base_page.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();                                                               // Ensures appp is initialized
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);                                  // Disables Bottom Bar and Status Bar
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);   // Ensures app runs in portrait
+
+  runApp(MyApp());  // Run the app
 }
 
 class MyApp extends StatelessWidget {
