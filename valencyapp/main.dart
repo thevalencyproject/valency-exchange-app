@@ -27,6 +27,32 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+  
+  void _increamentCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+  }
+}
+
+
+/*
+
 class MyAppState extends ChangeNotifier {
   // Logic goes here
 }
@@ -77,67 +103,4 @@ class WithdrawAssetForFundsPage {
   @override
 }   // Contains Withdraw Asset For Funds Page - Sell asset immediatly for funds - don't sell asset, get funds in account, then withdraw
 
-class MyHomePage extends StatefulWidget {
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  // App Logic Goes Here
-  var pageNum = 0;  // 0 = Portfolio | 1 = Wallet | 2 = Explore | 3 = Trading | 4 = Settings
-
-  @override
-  Widget build(BuildContext context) {
-
-    Widget page;
-    switch (selectedIndex) {
-    case 0:
-      page = GeneratorPage();
-    break;
-    case 1:
-      page = FavoritesPage();
-    break;
-    default:
-      throw UnimplementedError('no widget for $selectedIndex');
-    }
-
-    return LayoutBuilder(builder: (context, constraints) {
-        return Scaffold(
-          body: Row(
-            children: [
-              SafeArea(
-                child: NavigationRail(
-                  extended: constraints.maxWidth >= 600,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('Home'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
-                      label: Text('Favorites'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    
-                    setState(() {
-                      selectedIndex = value;
-                    });
-
-                  },
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-    );
-  }
-}
+ */
