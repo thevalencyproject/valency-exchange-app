@@ -1,0 +1,57 @@
+First Startup:
+-> Splash Screen
+IF:
+ -> Sign up clicked -> Sign Up Sequence
+ -> Sign in clicked -> Sign In Sequence
+ 
+Not First Startup:
+-> Sign In Sequence
+
+
+
+Sign Up Sequence:
+Sign Up Screen
+IF:
+ -> Correct Input -> Go to Sign Up TOS
+ -> Incorrect Input -> Display error
+
+Sign Up - TOS
+IF:
+ -> Agree -> Go to Sign Up Email Conformation
+ -> Disagree -> Go to Splash Screen
+
+Sign Up - Email Confirmation
+IF:
+ -> Code Matches -> Go to Sign Up Phone Confirmation
+ -> Code Doesn't Match - > Show error
+ 
+Sign Up - Phone Confirmation
+IF:
+ -> Code Matches -> Go to Sign Up KYC License Front
+ -> Code Doesn't Match - > Show error
+ 
+Sign Up - KYC License Front
+IF:
+ -> AI Detects Good Photo -> Go to Sign Up KYC License Back
+ -> AI Detects Bad Photo - > Show error and tell to retake photo
+
+Sign Up - KYC License Back
+IF:
+ -> AI Detects Good Photo -> Go to Sign Up KYC Face Photo
+ -> AI Detects Bad Photo - > Show error and tell to retake photo
+ 
+Sign Up - KYC Face Photo
+IF:
+ -> AI Detects Good Photo -> Go to Sign Up Awaiting Verification
+ -> AI Detects Bad Photo -> Show error and tell to retake photo
+
+Sign Up - Awaiting Verification
+IF:
+ -> Customer is verified -> Autologin and go to home
+ -> Customer is not verified -> Continue Loading Animation
+ 
+ 
+ 
+ 
+
+Sign In Sequence:
