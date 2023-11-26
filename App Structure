@@ -52,6 +52,15 @@ IF:
  
  
  
- 
-
 Sign In Sequence:
+Login
+IF:
+ -> Email + Password Match + <1 week since last login on this device -> Homepage
+ -> Email + Password Match + >1 week since last login on this device -> Login 2 Step Verification
+ -> Email + Password Don't Match -> Display Error
+ 
+Login - 2 Step Verification
+IF:
+ -> Code Matches -> Homepage
+ -> Code Doesn't Match -> Display Error
+ -> No access to phone -> Open Email App and email support
