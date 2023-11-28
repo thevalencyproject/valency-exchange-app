@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'
-
-import 'package:valencyapp/components/bigbutton.dart';import 'package:valencyapp/components/textfield.dart'
+import 'package:valencyapp/components/bigbutton.dart'
+import 'package:valencyapp/components/textfield.dart'
+import 'package:valencyapp/components/textbutton.dart'
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -9,8 +10,10 @@ class SignInScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // Sign in method
-  void signUserIn() {}
+  
+  void signUserIn() {}        // Sign in method
+  void forgotPassword() {}    // Forgot Password Method
+  void signIn() {}            // Sign in method
 
   @override
   Widget build(BuildContext context) {
@@ -52,17 +55,10 @@ class SignInScreen extends StatelessWidget {
 
               const SizedBox(height: 10),   // Gap between text fields and text
 
-              Padding(        // Button (looks like text) - Forgot password?
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  ],
-                ),
+              ValencyTextButton(
+                onTap: forgotPassword;
+                buttonColor: Colors.blue,
+                buttonText: 'Forgot Password?',
               ),
 
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.3),   // Gap Between top of screen and next element - 40% of screen height
@@ -75,17 +71,10 @@ class SignInScreen extends StatelessWidget {
 
               const SizedBox(height: 10),   // Gap between login button and sign up text
 
-              Padding(        // Button (looks like text) - Don't have an account? Sign up
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Don't have an account? Sign up",
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  ],
-                ),
+              ValencyTextButton(
+                onTap: signUp();
+                buttonColor: Colors.blue,
+                buttonText: "Don't have an account? Sign up".
               ),
 
 
