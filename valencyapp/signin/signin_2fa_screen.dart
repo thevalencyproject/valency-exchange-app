@@ -29,6 +29,8 @@ class SignIn2FAScreen extends StatelessWidget {
                 onTap: goBack,
               ),
 
+              const FractionallySizedBox(widthFactor: 1, heightFactor: 0.37),   // Gap back button and text
+
               Text('Login', 
                 style: TextStyle(
                   color: Colors.black, 
