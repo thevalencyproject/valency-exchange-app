@@ -6,14 +6,12 @@ import 'package:valencyapp/components/textbutton.dart'
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
 
-  // Email and Password Controllers
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  
-  void signIn() {}            // Sign in method
-  void forgotPassword() {}    // Forgot Password Method
-  void signUp() {}            // Sign un method
+  // I/O Controllers
+  final emailController = TextEditingController();      // Reads email
+  final passwordController = TextEditingController();   // Reads password
+  void signIn() {}                                      // Called when sign in button pressed
+  void forgotPassword() {}                              // Called when forgot password button pressed
+  void signUp() {}                                      // Called when sign up button pressed
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +24,20 @@ class SignInScreen extends StatelessWidget {
 
 
               
-              const FractionallySizedBox(widthFactor: 1, heightFactor: 0.4),   // Gap Between top of screen and next element - 40% of screen height
+              const FractionallySizedBox(widthFactor: 1, heightFactor: 0.4),   // Gap between top and content
 
               Text('Login', 
                 style: TextStyle(
                   color: Colors.black, 
-                  fontSize: 96),),       // Title Text - Login
+                  fontSize: 96
+                ),
+              ),
               Text('Please sign in to continue.', 
                 style: TextStyle(
                   color: Colors.black, 
-                  fontSize: 48),),       // Small Text - Please sign in to continue.
+                  fontSize: 48
+                ),
+              ),
 
               const SizedBox(height: 20),   // Gap between Text and Text Fields
 
@@ -66,7 +68,7 @@ class SignInScreen extends StatelessWidget {
               ValencyBigButton(   // Button - LOGIN
                 onTap: signIn, 
                 buttonColor: Colors.blue, 
-                hintText: 'LOGIN'
+                hintText: 'LOGIN',
               ),
 
               const SizedBox(height: 10),   // Gap between login button and sign up text
@@ -74,7 +76,7 @@ class SignInScreen extends StatelessWidget {
               ValencyTextButton(
                 onTap: signUp,
                 buttonColor: Colors.blue,
-                buttonText: "Don't have an account? Sign up".
+                buttonText: "Don't have an account? Sign up",
               ),
 
 
