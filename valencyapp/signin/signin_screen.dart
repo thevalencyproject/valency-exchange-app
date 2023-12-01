@@ -66,7 +66,7 @@ class SignInScreen extends StatelessWidget {
               ValencyBigButton(   // Button - LOGIN
                 onTap: signIn, 
                 buttonColor: Colors.blue, 
-                hintText: 'Login'
+                hintText: 'LOGIN'
               ),
 
               const SizedBox(height: 10),   // Gap between login button and sign up text
