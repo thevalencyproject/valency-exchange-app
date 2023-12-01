@@ -11,9 +11,9 @@ class SignInScreen extends StatelessWidget {
   final passwordController = TextEditingController();
 
   
-  void signUserIn() {}        // Sign in method
-  void forgotPassword() {}    // Forgot Password Method
   void signIn() {}            // Sign in method
+  void forgotPassword() {}    // Forgot Password Method
+  void signUp() {}            // Sign un method
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 10),   // Gap between text fields and text
 
               ValencyTextButton(
-                onTap: forgotPassword;
+                onTap: forgotPassword,
                 buttonColor: Colors.blue,
                 buttonText: 'Forgot Password?',
               ),
@@ -64,7 +64,7 @@ class SignInScreen extends StatelessWidget {
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.3),   // Gap Between top of screen and next element - 40% of screen height
 
               ValencyBigButton(   // Button - LOGIN
-                onTap: signUserIn, 
+                onTap: signIn, 
                 buttonColor: Colors.blue, 
                 hintText: 'Login'
               ),
@@ -72,7 +72,7 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 10),   // Gap between login button and sign up text
 
               ValencyTextButton(
-                onTap: signUp();
+                onTap: signUp,
                 buttonColor: Colors.blue,
                 buttonText: "Don't have an account? Sign up".
               ),
