@@ -1,22 +1,7 @@
-// Title Text - Terms of Service
-// Small Text - You must read and agree to the terms of service to use our exchange
-// Button - Back Icon (to go back to signup_screen)
-
-// Input Field - Full Name
-// Input Field - Phone Number
-// Input Field - Email
-// Input Field - Address
-// Input Field - Password
-// Input Field - Confirm Pasword
-
-// Display Field - Shows the terms of service (connected to database to update whenever TOS updates)
-
-// Button - Disagree
-// Button - Agree
-
 import 'package:flutter/material.dart'
 import 'package:valencyapp/components/bigbutton.dart'
 import 'package:valencyapp/components/backbutton.dart'
+import 'package:valencyapp/components/termsofservice.dart'
 
 class SignUpTOSScreen extends StatelessWidget {
   SignUpTOSScreen({super.key});
@@ -57,7 +42,7 @@ class SignUpTOSScreen extends StatelessWidget {
 
               const SizedBox(height: 10),   // Gap text and terms of service
 
-              ValencyTOS(),
+              ValencyTOS(),                 // Displays the terms of service
 
               const SizedBox(height: 25),   // Gap between terms of service and buttons
 
