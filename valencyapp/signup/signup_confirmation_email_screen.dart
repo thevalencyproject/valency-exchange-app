@@ -9,6 +9,7 @@ class SignUpConfirmationEmailScreen extends StatelessWidget {
   // I/O Controllers
   final verificationCodeController = TextEditingController();   // Reads verification code
   void resendcode() {}                                          // Called when resendcode is pressed
+  void goBack() {}                                              // Called when back button is pressed
 
   @override
   Widget build(BuildContext context) {
