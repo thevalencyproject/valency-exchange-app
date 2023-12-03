@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart'
 
-class ValencyExitButton extends StatelessWidget {
+class ValencyKYCCamera extends StatelessWidget {
   final int photoType;      // The type of photo. 0 = Front Licence, 1 = Back License, 2 = Face Photo
 
-  const ValencyExitButton({
+  const ValencyKYCCamera({
     super.key,
     required this.photoType,
   });
