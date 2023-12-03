@@ -3,8 +3,8 @@ import 'package:valencyapp/components/textfield.dart'
 import 'package:valencyapp/components/textbutton.dart'
 import 'package:valencyapp/components/backbutton.dart'
 
-class SignUpConfirmationEmailScreen extends StatelessWidget {
-  SignUpConfirmationEmailScreen({super.key});
+class SignUpConfirmationPhoneScreen extends StatelessWidget {
+  SignUpConfirmationPhoneScreen({super.key});
 
   // I/O Controllers
   final verificationCodeController = TextEditingController();   // Reads verification code
