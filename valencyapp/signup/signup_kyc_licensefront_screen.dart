@@ -2,8 +2,8 @@ import 'package:flutter/material.dart'
 import 'package:valencyapp/components/backbutton.dart'
 import 'package:valencyapp/components/kyccamera.dart'
 
-class SignUpKYCLicenseBackScreen extends StatelessWidget {
-  SignUpKYCLicenseBackScreen({super.key});
+class SignUpKYCLicenseFrontScreen extends StatelessWidget {
+  SignUpKYCLicenseFrontScreen({super.key});
 
   // I/O Controllers
   void goBack() {}   // Called when back button is pressed
@@ -31,7 +31,7 @@ class SignUpKYCLicenseBackScreen extends StatelessWidget {
                   fontSize: 96
                 ),
               ),
-              Text('Take a photo of the BACK of your license or identification.', 
+              Text('Take a photo of the FRONT of your license or identification.', 
                 style: TextStyle(
                   color: Colors.black, 
                   fontSize: 48,
@@ -48,7 +48,7 @@ class SignUpKYCLicenseBackScreen extends StatelessWidget {
               const SizedBox(height: 10),   // Gap text and terms of service
 
               ValencyKYCCamera(   // Displays the KYC camera - set to take front license photo
-                photoType: 1,     // 0 = Front Licence, 1 = Back License, 2 = Face Photo
+                photoType: 0,     // 0 = Front Licence, 1 = Back License, 2 = Face Photo
               ),
 
 
