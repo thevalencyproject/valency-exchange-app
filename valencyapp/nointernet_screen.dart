@@ -16,10 +16,10 @@ class NoInternetScreen extends StatelessWidget {
               
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.33),  // Gap between top and content
 
-              Image.asset(alignment: ,
+              Image.asset(
                 "images/nointernet.svg",
-                height: 252,
-                width: 252,
+                height: 252.0,
+                width: 252.0,
               ),
 
               const SizedBox(height: 25),   // Gap text and terms of service
