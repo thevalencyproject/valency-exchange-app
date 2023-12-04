@@ -45,11 +45,12 @@ class SignUpAwaitingVerificationScreen extends StatelessWidget {
               const SizedBox(height: 25),   // Gap text and terms of service
 
               // Loading GIF goes here
-              Image.asset(alignment: ,
+              Image.asset(
                 "images/loading.gif",
-                height: 250,
-                width: 250,
+                height: 250.0,
+                width: 250.0,
               ),
+
 
 
             ],
