@@ -2,6 +2,7 @@ import 'package:flutter/material.dart'
 import 'package:valencyapp/components/bigbutton.dart'
 import 'package:valencyapp/components/exitbutton.dart'
 import 'package:valencyapp/components/dropdownselector.dart'
+import 'package:valencyapp/components/banking/fiatamountselector.dart'
 
 class FundAccountScreen extends StatelessWidget {
   FundAccountScreen({super.key});
