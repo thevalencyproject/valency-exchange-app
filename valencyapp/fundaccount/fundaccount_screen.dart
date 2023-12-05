@@ -6,6 +6,9 @@ import 'package:valencyapp/components/dropdownselector.dart'
 class FundAccountScreen extends StatelessWidget {
   FundAccountScreen({super.key});
 
+  final List<String> paymentMethods = ["Credit/Debit Card", "Online Banking"];
+  int selectedPaymentMethod = 1;                                                  // 1 = Credit/Debit Card, 2 = Online Banking
+
   // I/O Controllers
   final paymentMethodController = TextEditingController();   // Reads payment method
   void deposit() {}                                          // Called when the deposit button is pressed
@@ -33,6 +36,8 @@ class FundAccountScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: const[
+
+
 
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.02),  // Gap between top and content
 
@@ -73,12 +78,23 @@ class FundAccountScreen extends StatelessWidget {
               ),
 
               ValencyDropDownSelector(
-                controller: controller, 
-                borderColor: borderColor, 
-                options: "Credit/Debit Card"  // Array with options goes here - need to initialise
+                controller: paymentMethodController, 
+                borderColor: Colors.blue, 
+                options: paymentMethods,
               ),
 
-              const SizedBox(height: 25),   // Gap between input fields and deposit button
+              const FractionallySizedBox(widthFactor: 1, heightFactor: 0.04),  // Gap between payment method and payment processor
+
+              switch(selectedPaymentMethod) {   // Payment Processor
+                case 1:
+                  // Draw bank card payment
+                  break;
+                case 2:
+                  // Draw online banking payment
+                  break;
+              }
+
+              const FractionallySizedBox(widthFactor: 1, heightFactor: 0.30),  // Gap between payment processor and deposit button
 
               ValencyBigButton(
                 onTap: deposit, 
