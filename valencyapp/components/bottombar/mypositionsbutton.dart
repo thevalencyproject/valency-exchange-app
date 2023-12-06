@@ -18,13 +18,13 @@ class ValencyMyPositionsButton extends StatelessWidget {
       child: active?
       SvgPicture.asset(
         'components/images/mypositionsactive.svg',
-        semanticsLabel: 'My Wallet',
+        semanticsLabel: 'My Positions',
         height: 90,
         width: 90,
       ):
       SvgPicture.asset(
         'components/images/mypositions.svg',
-        semanticsLabel: 'My Wallet',
+        semanticsLabel: 'My Positions',
         height: 90,
         width: 90,
       ),
