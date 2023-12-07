@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart'
-import 'package:valencyapp/components/bigbutton.dart'
-import 'package:valencyapp/components/backbutton.dart'
-import 'package:valencyapp/components/termsofservice.dart'
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/bigbutton.dart';
+import 'package:valencyapp/components/backbutton.dart';
+import 'package:valencyapp/components/termsofservice.dart';
 
 class SignUpTOSScreen extends StatelessWidget {
   SignUpTOSScreen({super.key});

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart'
-import 'package:valencyapp/components/backbutton.dart'
-import 'package:valencyapp/components/kyccamera.dart'
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/backbutton.dart';
+import 'package:valencyapp/components/kyccamera.dart';
 
 class SignUpKYCLicenseBackScreen extends StatelessWidget {
   SignUpKYCLicenseBackScreen({super.key});
