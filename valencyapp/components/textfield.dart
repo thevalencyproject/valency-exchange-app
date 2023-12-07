@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
 class ValencyTextField extends StatelessWidget {
   final controller;         // The controller that can access the contents of the textfield

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart'
-import 'package:valencyapp/components/bottombar/myportfoliobutton.dart'
-import 'package:valencyapp/components/bottombar/explorebutton.dart'
-import 'package:valencyapp/components/bottombar/mywalletbutton.dart'
-import 'package:valencyapp/components/bottombar/mypositionsbutton.dart'
-import 'package:valencyapp/components/bottombar/settingsbutton.dart'
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/bottombar/myportfoliobutton.dart';
+import 'package:valencyapp/components/bottombar/explorebutton.dart';
+import 'package:valencyapp/components/bottombar/mywalletbutton.dart';
+import 'package:valencyapp/components/bottombar/mypositionsbutton.dart';
+import 'package:valencyapp/components/bottombar/settingsbutton.dart';
 
 class ValencyBigButton extends StatelessWidget {
   final int focusedIcon;    // The button that is in focus: 0 = My Portfolio, 1 = Explore, 2 = My Wallet, 3 = My Positions, 4 = Settings

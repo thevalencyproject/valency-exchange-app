@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
 class ValencyDropDownSelector extends StatelessWidget {
   final controller;              // The controller that can access the selection
