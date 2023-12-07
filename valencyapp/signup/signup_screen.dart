@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart'
-import 'package:valencyapp/components/bigbutton.dart'
-import 'package:valencyapp/components/textfield.dart'
-import 'package:valencyapp/components/textbutton.dart'
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/bigbutton.dart';
+import 'package:valencyapp/components/textfield.dart';
+import 'package:valencyapp/components/textbutton.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
