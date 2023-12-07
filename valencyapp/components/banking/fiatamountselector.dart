@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ValencyFIATAmountSelector extends StatelessWidget {
@@ -8,7 +8,7 @@ class ValencyFIATAmountSelector extends StatelessWidget {
   const ValencyFIATAmountSelector({
     super.key,
     required this.controller,
-    required this.widthrawal,
+    required this.withdrawal,
   });
 
   @override
