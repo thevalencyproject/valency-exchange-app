@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart'
-import 'package:valencyapp/components/bigbutton.dart'
-import 'package:valencyapp/components/exitbutton.dart'
-import 'package:valencyapp/components/dropdownselector.dart'
-import 'package:valencyapp/components/banking/fiatamountselector.dart'
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/bigbutton.dart';
+import 'package:valencyapp/components/exitbutton.dart';
+import 'package:valencyapp/components/dropdownselector.dart';
+import 'package:valencyapp/components/banking/fiatamountselector.dart';
 
 class FundAccountScreen extends StatelessWidget {
   FundAccountScreen({super.key});
@@ -12,6 +12,7 @@ class FundAccountScreen extends StatelessWidget {
 
   // I/O Controllers
   final paymentMethodController = TextEditingController();   // Reads payment method
+  final paymentAmountController = TextEditingController();   // Reads payment amount
   void deposit() {}                                          // Called when the deposit button is pressed
   void exit() {}                                             // Called when the exit button is pressed
 
@@ -65,8 +66,9 @@ class FundAccountScreen extends StatelessWidget {
                 ),
               ),
 
-              ValencyFIATAmount(
-
+              ValencyFIATAmountSelector(
+                controller: paymentAmountController,
+                withdrawal: false,
               ),
 
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.04),  // Gap between select amount and payment method
