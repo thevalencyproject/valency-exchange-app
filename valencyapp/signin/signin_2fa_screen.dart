@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart'
-import 'package:valencyapp/components/textfield.dart'
-import 'package:valencyapp/components/textbutton.dart'
-import 'package:valencyapp/components/backbutton.dart'
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/textfield.dart';
+import 'package:valencyapp/components/textbutton.dart';
+import 'package:valencyapp/components/backbutton.dart';
 
 class SignIn2FAScreen extends StatelessWidget {
   SignIn2FAScreen({super.key});
