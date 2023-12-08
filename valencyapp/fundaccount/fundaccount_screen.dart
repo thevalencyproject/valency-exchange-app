@@ -9,6 +9,8 @@ class FundAccountScreen extends StatelessWidget {
 
   final List<String> paymentMethods = ["Credit/Debit Card", "Online Banking"];
   int selectedPaymentMethod = 1;                                                  // 1 = Credit/Debit Card, 2 = Online Banking
+  int isBankCardLinked = 1;                                                       // Not linked by default until backend system says it is
+  int isOnlineBankingLinked = 1;                                                  // Not linked by default until backend system says it is
 
   // I/O Controllers
   final paymentMethodController = TextEditingController();   // Reads payment method
@@ -89,11 +91,34 @@ class FundAccountScreen extends StatelessWidget {
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.04),  // Gap between payment method and payment processor
 
               switch(selectedPaymentMethod) {   // Payment Processor
-                case 1:
-                  // Draw bank card payment
+                case 1:   // Bank Card
+                  switch() {
+                    case 1:
+                      // Link Bank Card
+                      ValencyBankCardPayment(
+
+                      ),
+                      break;
+                    case 2:
+                      // Already linked bank card
+                      break;
+                  }
+                  
                   break;
-                case 2:
+                case 2:   // Online Banking
+                  switch() {
+                    case 1:
+
+                      break;
+                    case 2:
+
+                      break;
+                  }
+
                   // Draw online banking payment
+                  valencyOnlineBankingPayment(
+
+                  ),
                   break;
               }
 
