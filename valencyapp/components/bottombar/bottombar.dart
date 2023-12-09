@@ -23,7 +23,7 @@ class ValencyBigButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Each button should be next to each other on the horizontal plane like in the designs
-    
+    // Wrappers go here (wrappers should position each element in the correct position)
     ValencyMyPortfolioButton(
       onTap: MyPortfolioPressed,
       active: focusedIcon == 0?
