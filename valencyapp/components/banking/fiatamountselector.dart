@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:valencyapp/components/textfield.dart';
 
 class ValencyFIATAmountSelector extends StatelessWidget {
   final controller;       // The controller that can access the contents of the input field
@@ -13,6 +14,17 @@ class ValencyFIATAmountSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    return Padding (
+      ValencyTextField(
+        CONTROLLERGOESHERE,
+        "$1000",
+        false,
+      ),
+      ValencyTextField(
+        CONTROLLERGOESHERE,
+        "USD",
+        false,
+      ),
+    );
   }
 }
