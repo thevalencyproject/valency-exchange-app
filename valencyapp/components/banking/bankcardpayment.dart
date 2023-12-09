@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valencyapp/components/textfield.dart';
 
 class ValencyBankCardPayment extends StatelessWidget {
   final numberController;        // The controller that can access the card number
@@ -17,7 +18,26 @@ class ValencyBankCardPayment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      
+      ValencyTextField(
+        controller,
+        "Card Number",
+        false,
+      ),
+      ValencyTextField(
+        controller,
+        "Expiry Date (MM/YY)",
+        false,
+      ),
+      ValencyTextField(
+        controller,
+        "CCV Controller",
+        true,
+      ),
+      ValencyTextField(
+        controller,
+        "Name on Card",
+        false,
+      ),
     );
   }
 }
