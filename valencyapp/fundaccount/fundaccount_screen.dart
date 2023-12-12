@@ -24,7 +24,7 @@ class FundAccountScreen extends StatelessWidget {
   final bsbController = TextEditingController();                 // Reads BSB
   final accountHolderNameController = TextEditingController();   // Reads name of account holder
   void verifyBankAccount() {}                                    // Called when the verify bank account button is pressed
-  void changeAccount() {}                                     // Called when the change online banking account button is pressed
+  void changeAccount() {}                                        // Called when the change online banking account button is pressed
 
   // Funding via bank card
   final cardNumberController = TextEditingController();       // Reads card number
@@ -32,6 +32,7 @@ class FundAccountScreen extends StatelessWidget {
   final expirationDateController = TextEditingController();   // Reads expiration date of card
   final ccvController = TextEditingController();              // Reads CCV
   final saveCardController = TextEditingController();         // Reads whether to save card
+  void changeBankCard() {}                                    // Called when the change bank card button is pressed
 
   @override
   Widget build(BuildContext context) {
@@ -97,13 +98,19 @@ class FundAccountScreen extends StatelessWidget {
                   switch(isBankCardLinked) {
                     case 1:   // Link Bank Card
                       ValencyBankCardPayment(
-
+                        onDetailsVerified: readyForPurchase,
                       ),
                       break;
                     case 2:   // Already linked bank card
                       ValencyDisplayBankCardDetails(
 
                       ),
+                      ValencyTextButton(
+                        onTap: changeBankCard,
+                        buttonColor: Colors.blue,
+                        buttonText: "Deposit from another card",
+                      ),
+                      readyForPurchase();
                       break;
                   }
                   break;
@@ -112,7 +119,7 @@ class FundAccountScreen extends StatelessWidget {
                   switch(isOnlineBankingLinked) {
                     case 1:   // Link Online Banking
                       ValencyOnlineBankingPayment(
-
+                        onDetailsVerified: readyForPurchase,
                       ),
                       break;
                     case 2:   // Already Linked Online Banking
@@ -122,8 +129,9 @@ class FundAccountScreen extends StatelessWidget {
                       ValencyTextButton(
                         onTap: changeAccount,
                         buttonColor: Colors.blue,
-                        buttonText: "Send funds to another account",
+                        buttonText: "Deposit from another account",
                       ),
+                      readyForPurchase();
                       break;
                   }
 
