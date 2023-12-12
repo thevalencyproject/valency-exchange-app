@@ -13,6 +13,9 @@ class FundAccountScreen extends StatelessWidget {
   int isOnlineBankingLinked = 1;                                                  // Not linked by default until backend system says it is
 
   // I/O Controllers
+  bool methodVerified = false;
+  void readyForPurchase() { methodVerified = true; }
+
   final paymentMethodController = TextEditingController();   // Reads payment method
   final paymentAmountController = TextEditingController();   // Reads payment amount
   void deposit() {}                                          // Called when the deposit button is pressed
