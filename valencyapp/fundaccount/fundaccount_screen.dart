@@ -24,6 +24,7 @@ class FundAccountScreen extends StatelessWidget {
   final bsbController = TextEditingController();                 // Reads BSB
   final accountHolderNameController = TextEditingController();   // Reads name of account holder
   void verifyBankAccount() {}                                    // Called when the verify bank account button is pressed
+  void changeAccount() {}                                     // Called when the change online banking account button is pressed
 
   // Funding via bank card
   final cardNumberController = TextEditingController();       // Reads card number
@@ -92,33 +93,40 @@ class FundAccountScreen extends StatelessWidget {
 
               switch(selectedPaymentMethod) {   // Payment Processor
                 case 1:   // Bank Card
-                  switch() {
-                    case 1:
-                      // Link Bank Card
+
+                  switch(isBankCardLinked) {
+                    case 1:   // Link Bank Card
                       ValencyBankCardPayment(
 
                       ),
                       break;
-                    case 2:
-                      // Already linked bank card
+                    case 2:   // Already linked bank card
+                      ValencyDisplayBankCardDetails(
+
+                      ),
                       break;
                   }
-                  
                   break;
                 case 2:   // Online Banking
-                  switch() {
-                    case 1:
 
+                  switch(isOnlineBankingLinked) {
+                    case 1:   // Link Online Banking
+                      ValencyOnlineBankingPayment(
+
+                      ),
                       break;
-                    case 2:
+                    case 2:   // Already Linked Online Banking
+                      ValencyDisplayOnlineBankingDetails(
 
+                      ),
+                      ValencyTextButton(
+                        onTap: changeAccount,
+                        buttonColor: Colors.blue,
+                        buttonText: "Send funds to another account",
+                      ),
                       break;
                   }
 
-                  // Draw online banking payment
-                  valencyOnlineBankingPayment(
-
-                  ),
                   break;
               }
 
