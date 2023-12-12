@@ -143,11 +143,22 @@ class FundAccountScreen extends StatelessWidget {
 
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.30),  // Gap between payment processor and deposit button
 
-              ValencyBigButton(
-                onTap: deposit, 
-                buttonColor: Colors.green, 
-                hintText: 'DEPOSIT'
-              ),
+              switch(methodVerified) {
+              case 0:
+                ValencyBigButton(
+                  onTap: null, 
+                  buttonColor: Colors.grey, 
+                  hintText: 'DEPOSIT'
+                ),
+                break;
+              case 1:
+                ValencyBigButton(
+                  onTap: deposit, 
+                  buttonColor: Colors.green, 
+                  hintText: 'DEPOSIT'
+                ),
+                break;
+              }
 
 
 
