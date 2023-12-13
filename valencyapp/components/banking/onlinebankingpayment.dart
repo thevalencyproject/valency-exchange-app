@@ -34,3 +34,49 @@ class ValencyOnlineBankingPayment extends StatelessWidget {
     );
   }
 }
+
+class ValencyDisplayOnlineBankingDetails extends StatelessWidget {
+  final String sessionId;        // The session ID
+  final String passcode;         // The passcode to access the session
+
+  String getAccountNumber() {}
+  String getBSB() {}
+  String getCustomerRef() {}
+
+  const ValencyDisplayOnlineBankingDetails({
+    super.key,
+    required this.sessionId,
+    required this.passcode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+
+      Text(
+        'Account Number: + ${getAccountNumber()}', 
+        style: TextStyle(
+          color: Colors.black, 
+          fontSize: 96
+        ),
+      ),
+
+      Text(
+        'BSB: + ${getBSB()}', 
+        style: TextStyle(
+          color: Colors.black, 
+          fontSize: 96
+        ),
+      ),
+
+      Text(
+        'Customer Ref: + ${getCustomerRef()}', 
+        style: TextStyle(
+          color: Colors.black, 
+          fontSize: 96
+        ),
+      ),
+
+    );
+  }
+}
