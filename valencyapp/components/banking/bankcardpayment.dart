@@ -41,3 +41,50 @@ class ValencyBankCardPayment extends StatelessWidget {
     );
   }
 }
+
+class ValencyDisplayBankCardDetails extends StatelessWidget {
+  final String sessionId;        // The session ID
+  final String passcode;         // The passcode to access the session
+
+  // The system does NOT send CCV numbers in display bank card detail requests for security reasons!!!
+  String getCardNumber() {}
+  String getExpiry() {}
+  String getNameOnCard() {}
+
+  const ValencyDisplayBankCardDetails({
+    super.key,
+    required this.sessionId,
+    required this.passcode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+
+      Text(
+        'Card Number: + ${getCardNumber()}', 
+        style: TextStyle(
+          color: Colors.black, 
+          fontSize: 96
+        ),
+      ),
+
+      Text(
+        'Expiry: + ${getBSB()}', 
+        style: TextStyle(
+          color: Colors.black, 
+          fontSize: 96
+        ),
+      ),
+
+      Text(
+        'Name on Card: + ${getNameOnCard()}', 
+        style: TextStyle(
+          color: Colors.black, 
+          fontSize: 96
+        ),
+      ),
+
+    );
+  }
+}
