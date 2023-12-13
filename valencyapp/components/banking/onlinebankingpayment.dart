@@ -57,7 +57,7 @@ class ValencyDisplayOnlineBankingDetails extends StatelessWidget {
         'Account Number: + ${getAccountNumber()}', 
         style: TextStyle(
           color: Colors.black, 
-          fontSize: 96
+          fontSize: 32
         ),
       ),
 
@@ -65,7 +65,7 @@ class ValencyDisplayOnlineBankingDetails extends StatelessWidget {
         'BSB: + ${getBSB()}', 
         style: TextStyle(
           color: Colors.black, 
-          fontSize: 96
+          fontSize: 32
         ),
       ),
 
@@ -73,7 +73,7 @@ class ValencyDisplayOnlineBankingDetails extends StatelessWidget {
         'Customer Ref: + ${getCustomerRef()}', 
         style: TextStyle(
           color: Colors.black, 
-          fontSize: 96
+          fontSize: 32
         ),
       ),
 
