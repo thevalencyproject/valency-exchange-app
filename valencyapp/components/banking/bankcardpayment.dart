@@ -65,7 +65,7 @@ class ValencyDisplayBankCardDetails extends StatelessWidget {
         'Card Number: + ${getCardNumber()}', 
         style: TextStyle(
           color: Colors.black, 
-          fontSize: 96
+          fontSize: 32
         ),
       ),
 
@@ -73,7 +73,7 @@ class ValencyDisplayBankCardDetails extends StatelessWidget {
         'Expiry: + ${getBSB()}', 
         style: TextStyle(
           color: Colors.black, 
-          fontSize: 96
+          fontSize: 32
         ),
       ),
 
@@ -81,7 +81,7 @@ class ValencyDisplayBankCardDetails extends StatelessWidget {
         'Name on Card: + ${getNameOnCard()}', 
         style: TextStyle(
           color: Colors.black, 
-          fontSize: 96
+          fontSize: 32
         ),
       ),
 
