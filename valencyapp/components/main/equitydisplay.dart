@@ -4,10 +4,11 @@
 import 'package:flutter/material.dart';
 
 class ValencyEquityDisplay extends StatelessWidget {
-  final String topText;     // The text above the equity/available display (usually Title Text for the entire screen)
-  final double equity;      // The equity amount 
-  final double available;   // The available amount
-  final bool switching;     // True if switching is available
+  final String topText;               // The text above the equity/available display (usually Title Text for the entire screen)
+  final double equity;                // The equity amount 
+  final double available;             // The available amount
+  final bool switching;               // True if switching is available
+  final bool isAvailableDisplaying;   // True when the available amount is displaying
 
   ValencyEquityDisplay({
     super.key,
@@ -15,11 +16,11 @@ class ValencyEquityDisplay extends StatelessWidget {
     required this.equity,
     required this.available,
     required this.switching,
+    required this.isAvailableDisplaying,
   });
 
   // I/O Controllers
-  void switchType() {}          // Called when switch avaliable/equity button is pressed
-  bool isAvailableDisplaying;   // True when the available amount is displaying
+  void switchType() {}          // Called when switch avaliable/equity button is pressed - redraws display with other type
 
   @override
   Widget build(BuildContext context) {
