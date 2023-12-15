@@ -1,8 +1,33 @@
-Graph Intervals:
-
+My Portfolio:
 1 Day: 2 minute intervals = 30*24= 720
 1 Week: 15 minute intervals = 4*24*7= 672
 1 Month (30 days): 30 minute intervals = 2*24*30= 1440
 3 Months (90 days): 2 hour intervals = 12 * 90= 1080
 1 Year: 1 day intervals = 365
 Max: 1 week intervals = 1 * #ofWeeksAssetHasExisted
+
+Calculating required bandwidth for 30 Assets:
+365 * 30 = 10950
+1080 * 30 = 32400
+1440 * 30 = 43200
+672 * 30 = 20160
+720 * 30 = 21600
+128,310 datapoints * 64 bits (size of double) = 1,026,480 bytes = ~1 megabyte / 30 assets = 1/30MB per asset
+
+
+My Positions:
+Asset Name: 32 character ASCII string max = 8*32 = 256 bits
+Opening Rate: 64 bit double
+Current Rate: 64 bit double
+Opening Date: 128 bits
+Expiry Date: 128 bits
+Leverage: 32 bits
+
+Calculating required bandwidth for 30 positions:
+256 * 30 = 7680
+64 * 30 = 1920
+64 * 30 = 1920
+128 * 30 = 3840
+128 * 30 = 3840
+32 * 30 = 960
+20,160 bits = 2520 bytes = 2.46KB = 2.46/30 per asset = ~1/12KB per asset
