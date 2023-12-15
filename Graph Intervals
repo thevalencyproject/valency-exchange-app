@@ -1,0 +1,8 @@
+Graph Intervals:
+
+1 Day: 2 minute intervals = 30*24= 720
+1 Week: 15 minute intervals = 4*24*7= 672
+1 Month (30 days): 30 minute intervals = 2*24*30= 1440
+3 Months (90 days): 2 hour intervals = 12 * 90= 1080
+1 Year: 1 day intervals = 365
+Max: 1 week intervals = 1 * #ofWeeksAssetHasExisted
