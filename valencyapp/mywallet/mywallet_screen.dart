@@ -5,8 +5,8 @@ import 'package:valencyapp/components/main/equitydisplay.dart';
 import 'package:valencyapp/components/main/valuegraph/valuegraph.dart';
 
 // The variables passed through should be changed to pointers!!
-class MyPortfolioScreen extends StatelessWidget {
-  MyPortfolioScreen({
+class MyWalletScreen extends StatelessWidget {
+  MyWalletScreen({
     super.key,
     required this.amountOfFIATFunds,
     required this.availableAmount,
