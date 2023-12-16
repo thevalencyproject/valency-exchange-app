@@ -73,7 +73,7 @@ class MyPortfolioScreen extends StatelessWidget {
 
               ValencyFundsDisplay(
                 currency: 'AUD', 
-                amountOfFunds: amountOfFunds
+                amountOfFunds: amountOfFIATFunds
               ),
 
               ValencyEquityDisplay(
