@@ -7,8 +7,6 @@ import 'package:valencyapp/components/main/valuegraph/valuegraph.dart';
 class MyPositionsScreen extends StatelessWidget {
   MyPositionsScreen({
     super.key,
-    required this.amountOfFIATFunds,
-    required this.availableAmount,
     required this.equityAmount,
     required this.dollarChange,
     required this.percentageChange,
