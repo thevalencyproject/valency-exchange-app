@@ -3,27 +3,97 @@
 // 2. This months 6 popular lists - lists and icons are embedded in the application, so no need to use bandwidth for them
 // 3. Assets that are trending today (a list of multiple) - icons are embedded in the application, so no need to use bandwidth for them
 // 4. Current cryptocurrency news segment (all 3) - Title, link, description, and image for each
+import 'package:flutter/material.dart';
+import 'package:valencyapp/components/main/fundsdisplay.dart';
+import 'package:valencyapp/components/main/bottombar/bottombar.dart';
 
-// Search
-final int amountOfFIATFunds;                            // [Uses Bandwidth] The amount of FIAT funds in the Valency account
-List<String> allAvailableAssets = [];                   // [Uses Bandwidth] All available assets (if cached and no update since cache, this will use cached data (price data still needs updating though))
-List<double> allAvailableAssetsPrice = [];              // [Uses Bandwidth] Price data for each available asset
-List<double> allAvailableAssetsPercentageChange = [];   // [Uses Bandwidth] Percentage Change for each available asset in the last 24 hours
+// The variables passed through should be changed to pointers!!
+class ExploreScreen extends StatelessWidget {
+  ExploreScreen({
+    super.key,
+    required this.amountOfFIATFunds,
+    required this.allAvailableAssets,
+    required this.allAvailableAssetsPrice,
+    required this.allAvailableAssetsPercentageChange,
+    required this.popularListsNames,
+    required this.popularListImages,
+    required this.trendingTodayIndex,
+    required this.trendingTodayPercentageChange,
+    required this.trendingTodayAssetName,
+    required this.trendingTodayPrices,
+    required this.trendingTodayIcon,
+    required this.newsTitles,
+    required this.newsDescriptions,
+    required this.newsPublishers,
+    required this.newsPublicationTimes,
+    required this.newsImages,
+  });
 
-// Popular Lists
-List<String> popularListsNames = [];    // [Uses Bandwidth] A list of each popular list (in order of how popular)
-List<Image> popularListImages = [];     // [Calculated Locally] Images to accompany each list (stored locally - match list name to image)
+  // Search
+  final int amountOfFIATFunds;                                  // [Uses Bandwidth] The amount of FIAT funds in the Valency account
+  final List<String> allAvailableAssets = [];                   // [Uses Bandwidth] All available assets (if cached and no update since cache, this will use cached data (price data still needs updating though))
+  final List<double> allAvailableAssetsPrice = [];              // [Uses Bandwidth] Price data for each available asset
+  final List<double> allAvailableAssetsPercentageChange = [];   // [Uses Bandwidth] Percentage Change for each available asset in the last 24 hours
 
-// Trending Today
-List<int> trendingTodayIndex = [];                // [Uses Bandwidth] The indexes of the assets that are trending today (15 per day)(index should be for the allAvailableAssets array)
-List<double> trendingTodayPercentageChange = [];  // [Calculated Locally] Percentage Change for each trending today asset in the last 24 hours - gotten locally from the all available assets list (using trendingTodayIndex as an index)
-List<String> trendingTodayAssetName = [];         // [Calculated Locally] The name of each asset in the trending today section - Gotten locally from the all available assets list (using trendingTodayIndex as an index)
-List<double> trendingTodayPrices = [];            // [Calculated Locally] The price of each asset in the trending today section - Gotten locally from the all available assets list (using trendingTodayIndex as an index)
-List<Image> trendingTodayIcon = [];               // [Calculated Locally] Icons to accompany each asset (stored locally - match asset name to icon)
+  // Popular Lists
+  final List<String> popularListsNames = [];    // [Uses Bandwidth] A list of each popular list (in order of how popular)
+  final List<Image> popularListImages = [];     // [Calculated Locally] Images to accompany each list (stored locally - match list name to image)
 
-// News
-List<double> newsTitles = [];               // [Uses Bandwidth] The news titles
-List<String> newsDescriptions = [];         // [Uses Bandwidth] The news descriptions
-List<String> newsPublishers = [];           // [Uses Bandwidth] The news publishers
-List<DateTime> newsPublicationTimes = [];   // [Uses Bandwidth] The news publication times
-List<Image> newsImages = [];                // [Uses Bandwidth] The news images
+  // Trending Today
+  final List<int> trendingTodayIndex = [];                // [Uses Bandwidth] The indexes of the assets that are trending today (15 per day)(index should be for the allAvailableAssets array)
+  final List<double> trendingTodayPercentageChange = [];  // [Calculated Locally] Percentage Change for each trending today asset in the last 24 hours - gotten locally from the all available assets list (using trendingTodayIndex as an index)
+  final List<String> trendingTodayAssetName = [];         // [Calculated Locally] The name of each asset in the trending today section - Gotten locally from the all available assets list (using trendingTodayIndex as an index)
+  final List<double> trendingTodayPrices = [];            // [Calculated Locally] The price of each asset in the trending today section - Gotten locally from the all available assets list (using trendingTodayIndex as an index)
+  final List<Image> trendingTodayIcon = [];               // [Calculated Locally] Icons to accompany each asset (stored locally - match asset name to icon)
+
+  // News
+  final List<double> newsTitles = [];               // [Uses Bandwidth] The news titles
+  final List<String> newsDescriptions = [];         // [Uses Bandwidth] The news descriptions
+  final List<String> newsPublishers = [];           // [Uses Bandwidth] The news publishers
+  final List<DateTime> newsPublicationTimes = [];   // [Uses Bandwidth] The news publication times
+  final List<Image> newsImages = [];                // [Uses Bandwidth] The news images
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: const[
+
+
+
+              ValencyFundsDisplay(
+                currency: 'AUD', 
+                amountOfFunds: amountOfFIATFunds
+              ),
+
+              Text('Explore', 
+                style: TextStyle(
+                  color: Colors.black, 
+                  fontSize: 96
+                ),
+              ),
+
+              // VALENCY SEARCH GOES HERE
+
+              // POPULAR LISTS GOES HERE
+
+              // TRENDING TODAY GOES HERE
+
+              // CRYPTOCURRENCY NEWS GOES HERE
+
+              ValencyBottomBar(
+                focusedIcon: 1,
+              ),
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
