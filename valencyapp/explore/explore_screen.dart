@@ -1,8 +1,3 @@
-// Variables given to the explore screen when drawing to screen:
-// 1. FIAT Balance Amount (for top right display)
-// 2. This months 6 popular lists - lists and icons are embedded in the application, so no need to use bandwidth for them
-// 3. Assets that are trending today (a list of multiple) - icons are embedded in the application, so no need to use bandwidth for them
-// 4. Current cryptocurrency news segment (all 3) - Title, link, description, and image for each
 import 'package:flutter/material.dart';
 import 'package:valencyapp/components/main/fundsdisplay.dart';
 import 'package:valencyapp/components/main/bottombar/bottombar.dart';
@@ -35,18 +30,18 @@ class ExploreScreen extends StatelessWidget {
   final List<double> allAvailableAssetsPrice = [];              // [Uses Bandwidth] Price data for each available asset
   final List<double> allAvailableAssetsPercentageChange = [];   // [Uses Bandwidth] Percentage Change for each available asset in the last 24 hours
 
-  // Popular Lists
+  // Popular Lists - 6 most popular lists, lists & icons embedded to save bandwidth
   final List<String> popularListsNames = [];    // [Uses Bandwidth] A list of each popular list (in order of how popular)
   final List<Image> popularListImages = [];     // [Calculated Locally] Images to accompany each list (stored locally - match list name to image)
 
-  // Trending Today
+  // Trending Today - names & icons are embedded to save bandwidth
   final List<int> trendingTodayIndex = [];                // [Uses Bandwidth] The indexes of the assets that are trending today (15 per day)(index should be for the allAvailableAssets array)
   final List<double> trendingTodayPercentageChange = [];  // [Calculated Locally] Percentage Change for each trending today asset in the last 24 hours - gotten locally from the all available assets list (using trendingTodayIndex as an index)
   final List<String> trendingTodayAssetName = [];         // [Calculated Locally] The name of each asset in the trending today section - Gotten locally from the all available assets list (using trendingTodayIndex as an index)
   final List<double> trendingTodayPrices = [];            // [Calculated Locally] The price of each asset in the trending today section - Gotten locally from the all available assets list (using trendingTodayIndex as an index)
   final List<Image> trendingTodayIcon = [];               // [Calculated Locally] Icons to accompany each asset (stored locally - match asset name to icon)
 
-  // News
+  // News - all uses bandwidth (news segments from news companies)
   final List<double> newsTitles = [];               // [Uses Bandwidth] The news titles
   final List<String> newsDescriptions = [];         // [Uses Bandwidth] The news descriptions
   final List<String> newsPublishers = [];           // [Uses Bandwidth] The news publishers
