@@ -24,10 +24,10 @@ class ValencySearchBar extends StatefulWidget {
   // Below is refreshed each time a new character is typed into the text field
   List<String> suggestions = [];          // Generate a new suggestions list to go with the input
   for(int i = 0; i < searchable.length; i++) {
-    String temp = searchable(i);                   // Create a temporary string to hold the searchable term
+    String temp = searchable.elementAt(i);                   // Create a temporary string to hold the searchable term
     temp.substring(1, /*SEARCHBARINPUT.LENGTH*/)   // Size temp to the input length
     if(/* SEARCHBARINPUT */ == temp) {             // If the input is equal to part of the searchable, add the full searchable term to suggestions
-      suggestions.add(searchable(i));
+      suggestions.add(searchable.elementAt(i));
     }
   }
   if(suggestions.length == 0) {   // If there are no suggestions based on the input
