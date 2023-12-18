@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valencyapp/components/textfield.dart';
 
 // This widget is responsible for search functionality
 // Name: ValencySearchBar
@@ -19,20 +20,74 @@ class ValencySearchBar extends StatefulWidget {
   final List<String> searchable = [];
   final List<double> searchablePrices = [];
   final List<double> searchablePercentages = [];
-  final searchBarInput = TextEditingController();   // Reads input in the text field
+  
+  @override_ValencySearchBarState createState() => _ValencySearchBarState();
+}
 
-  // Below is refreshed each time a new character is typed into the text field
-  List<String> suggestions = [];          // Generate a new suggestions list to go with the input
-  for(int i = 0; i < searchable.length; i++) {
-    String temp = searchable.elementAt(i);                   // Create a temporary string to hold the searchable term
-    temp.substring(1, /*SEARCHBARINPUT.LENGTH*/)   // Size temp to the input length
-    if(/* SEARCHBARINPUT */ == temp) {             // If the input is equal to part of the searchable, add the full searchable term to suggestions
-      suggestions.add(searchable.elementAt(i));
-    }
+class _ValencySearchBarState extends State<ValencySearchBar> {
+  TextEditingController searchBarInput = TextEditingController();
+  List<int> suggestionIndices = [];   // A list of the suggestions
+
+  @override
+  void initState() {
+    super.initState();
+    searchBarInput.addListener(_updateSuggestions);
   }
-  if(suggestions.length == 0) {   // If there are no suggestions based on the input
-    // DISPLAY NO SEARCH RESULTS TEXT HERE
-  } else {
-    // DISPLAY SUGGESTIONS LIST HERE
+
+  void _updateSuggestions() {
+    String input = searchBarInput.text.toLowerCase();
+    setState(() {
+      suggestionIndices = widget.searchable
+        .asMap()
+        .entries
+        .where((entry) => entry.value.toLowerCase().startsWith(input))
+        .map((entry) => entry.key)
+        .toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    searchBarInput.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        ValencyTextField(
+          controller: searchBarInput,
+          hintText: 'Search',
+          obscureText: false,
+        ),
+
+        _buildSuggestionsList(),
+      ],
+    );
+  }
+
+  Widget _buildSuggestionsList() {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: suggestionIndices.length,
+      itemBuilder: (context, index) {
+        int suggestionIndex = suggestionIndices[index];
+        String item = widget.searchable[suggestionIndex];
+        double price = widget.searchablePrices[suggestionIndex];
+        double percentage = widget.searchablePercentages[suggestionIndex];
+
+        return ListTile(
+          title: Text('$item - \$${price.toStringAsFixed(2)} (${percentage.toStringAsFixed(2)}%)'),
+
+          onTap: () {
+            // Suggestion selected event logic goes here - pass through selected searchable element into asset overview screen function
+            // Send selected searchable list element through controller and display route through parents to display
+            
+            print('Selected: $item');
+          },
+        );
+      }
+    );
   }
 }
