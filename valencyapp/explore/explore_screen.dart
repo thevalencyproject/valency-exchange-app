@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valencyapp/components/main/search.dart';
 import 'package:valencyapp/components/main/fundsdisplay.dart';
 import 'package:valencyapp/components/main/bottombar/bottombar.dart';
 
@@ -71,7 +72,11 @@ class ExploreScreen extends StatelessWidget {
                 ),
               ),
 
-              // VALENCY SEARCH GOES HERE
+              ValencySearchBar(
+                searchable: allAvailableAssets,
+                seachablePrices: allAvailableAssetsPrice,
+                searchablePercentages: allAvailableAssetsPercentageChange,
+              ),
 
               // POPULAR LISTS GOES HERE
 
