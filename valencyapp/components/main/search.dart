@@ -13,15 +13,16 @@ class ValencySearchBar extends StatefulWidget {
   ValencySearchBar({
     super.key,
     required this.searchable,
-    this.searchablePrices,
-    this.searchablePercentages,
+    required this.searchablePrices,
+    required this.searchablePercentages,
   });
 
-  final List<String> searchable = [];
-  final List<double> searchablePrices = [];
-  final List<double> searchablePercentages = [];
+  final List<String> searchable;
+  final List<double> searchablePrices;
+  final List<double> searchablePercentages;
   
-  @override_ValencySearchBarState createState() => _ValencySearchBarState();
+  @override
+  _ValencySearchBarState createState() => _ValencySearchBarState();
 }
 
 class _ValencySearchBarState extends State<ValencySearchBar> {
@@ -83,7 +84,7 @@ class _ValencySearchBarState extends State<ValencySearchBar> {
           onTap: () {
             // Suggestion selected event logic goes here - pass through selected searchable element into asset overview screen function
             // Send selected searchable list element through controller and display route through parents to display
-            
+
             print('Selected: $item');
           },
         );
