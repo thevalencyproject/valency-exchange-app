@@ -74,7 +74,7 @@ class ExploreScreen extends StatelessWidget {
 
               ValencySearchBar(
                 searchable: allAvailableAssets,
-                seachablePrices: allAvailableAssetsPrice,
+                searchablePrices: allAvailableAssetsPrice,
                 searchablePercentages: allAvailableAssetsPercentageChange,
               ),
 
