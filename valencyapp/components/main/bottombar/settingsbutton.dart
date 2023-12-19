@@ -13,17 +13,12 @@ class ValencySettingsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String assetName = active ? 'components/images/settingsactive.svg' : 'components/images/settings.svg';
+
     return GestureDetector(
       onTap: onTap,
-      child: active?
-      SvgPicture.asset(
-        'components/images/settingsactive.svg',
-        semanticsLabel: 'Settings',
-        height: 90,
-        width: 90,
-      ):
-      SvgPicture.asset(
-        'components/images/settings.svg',
+      child: SvgPicture.asset(
+        assetName,
         semanticsLabel: 'Settings',
         height: 90,
         width: 90,

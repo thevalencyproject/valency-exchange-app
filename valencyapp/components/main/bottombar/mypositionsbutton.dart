@@ -13,17 +13,12 @@ class ValencyMyPositionsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String assetName = active ? 'components/images/mypositionsactive.svg' : 'components/images/mypositions.svg';
+
     return GestureDetector(
       onTap: onTap,
-      child: active?
-      SvgPicture.asset(
-        'components/images/mypositionsactive.svg',
-        semanticsLabel: 'My Positions',
-        height: 90,
-        width: 90,
-      ):
-      SvgPicture.asset(
-        'components/images/mypositions.svg',
+      child: SvgPicture.asset(
+        assetName,
         semanticsLabel: 'My Positions',
         height: 90,
         width: 90,

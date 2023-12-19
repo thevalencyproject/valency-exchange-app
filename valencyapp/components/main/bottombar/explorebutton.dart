@@ -13,17 +13,12 @@ class ValencyExploreButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String assetName = active ? 'components/images/exploreactive.svg' : 'components/images/explore.svg';
+
     return GestureDetector(
       onTap: onTap,
-      child: active?
-      SvgPicture.asset(
-        'components/images/exploreactive.svg',
-        semanticsLabel: 'Explore',
-        height: 90,
-        width: 90,
-      ):
-      SvgPicture.asset(
-        'components/images/explore.svg',
+      child: SvgPicture.asset(
+        assetName,
         semanticsLabel: 'Explore',
         height: 90,
         width: 90,

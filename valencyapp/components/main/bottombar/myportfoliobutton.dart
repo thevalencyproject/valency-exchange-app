@@ -13,17 +13,12 @@ class ValencyMyPortfolioButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String assetName = active ? 'components/images/myportfolioactive.svg' : 'components/images/myportfolio.svg';
+
     return GestureDetector(
       onTap: onTap,
-      child: active?
-      SvgPicture.asset(
-        'components/images/myportfolioactive.svg',
-        semanticsLabel: 'My Portfolio',
-        height: 90,
-        width: 90,
-      ):
-      SvgPicture.asset(
-        'components/images/myportfolio.svg',
+      child: SvgPicture.asset(
+        assetName,
         semanticsLabel: 'My Portfolio',
         height: 90,
         width: 90,

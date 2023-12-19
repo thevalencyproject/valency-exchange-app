@@ -13,17 +13,12 @@ class ValencyMyWalletButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String assetName = active ? 'components/images/mywalletsactive.svg' : 'components/images/mywallet.svg';
+
     return GestureDetector(
       onTap: onTap,
-      child: active?
-      SvgPicture.asset(
-        'components/images/mywalletactive.svg',
-        semanticsLabel: 'My Wallet',
-        height: 90,
-        width: 90,
-      ):
-      SvgPicture.asset(
-        'components/images/mywallet.svg',
+      child: SvgPicture.asset(
+        assetName,
         semanticsLabel: 'My Wallet',
         height: 90,
         width: 90,
