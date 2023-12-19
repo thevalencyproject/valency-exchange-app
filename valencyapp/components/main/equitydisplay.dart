@@ -1,9 +1,6 @@
-// 3 Options: My Wallet, My Positions, or My Portfolio
-//           AND
-//            Equity/Available Switching or No Equity/Available Switching
 import 'package:flutter/material.dart';
 
-class ValencyEquityDisplay extends StatefulWidget {
+class ValencyEquityDisplay extends StatelessWidget {
   ValencyEquityDisplay({
     super.key,
     required this.topText,
@@ -12,23 +9,10 @@ class ValencyEquityDisplay extends StatefulWidget {
     required this.switching,
   });
 
-  final String topText;               // The text above the equity/available display (usually Title Text for the entire screen)
-  final double equity;                // The equity amount 
-  final double available;             // The available amount
-  final bool switching;               // True if switching is available
-
-  @override
-  State<ValencyEquityDisplay> createState() => _ValencyEquityDisplayState();
-}
-
-class _ValencyEquityDisplayState extends State<ValencyEquityDisplay> {
-  bool isAvailableDisplaying = false;   // Equity gets displayed by default
-
-  void switchType() {
-    setState(() {
-      isAvailableDisplaying = !isAvailableDisplaying;
-    });
-  }
+  final String topText;                     // The text above the equity/available display (usually Title Text for the entire screen)
+  final ValueNotifier<double> equity;       // The equity amount (ValueNotifier allows it to be dynamically updated)
+  final ValueNotifier<double> available;    // The available amount (ValueNotifier allows it to be dynamically updated)
+  final bool switching;                     // True if switching is available
 
   @override
   Widget build(BuildContext context) {
@@ -40,23 +24,22 @@ class _ValencyEquityDisplayState extends State<ValencyEquityDisplay> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.topText,
+                topText,
                 style: const TextStyle(color: Colors.black, fontSize: 96),
               ),
-
               const SizedBox(height: 20),
-              if(!widget.switching)
-                Column(
-                  children: [
-                    Text(
-                      isAvailableDisplaying ? '${widget.available}' : '${widget.equity}',
-                      style: const TextStyle(color: Colors.black, fontSize: 96),
-                    ),
-                    ValencyEquitySwitcher(
-                      isEquity: !isAvailableDisplaying,
-                      onSwitch: switchType,
-                    ),
-                  ],
+              if (!switching)
+                ValueListenableBuilder<double>(
+                  valueListenable: equity,
+                  builder: (_, value, __) => Text(
+                    '$value',
+                    style: const TextStyle(color: Colors.black, fontSize: 96),
+                  ),
+                ),
+              if (switching)
+                ValencyEquitySwitcher(
+                  equity: equity,
+                  available: available,
                 ),
             ],
           ),
@@ -66,24 +49,48 @@ class _ValencyEquityDisplayState extends State<ValencyEquityDisplay> {
   }
 }
 
-class ValencyEquitySwitcher extends StatelessWidget {
+// Switches between displaying equity and available amounts
+class ValencyEquitySwitcher extends StatefulWidget {
   ValencyEquitySwitcher({
     super.key,
-    required this.isEquity,
-    required this.onSwitch,
+    required this.equity,
+    required this.available,
   });
 
-  final bool isEquity;            // True if equity is being displayed
-  final VoidCallback? onSwitch;   // Detects button presses
+  final ValueNotifier<double> equity;
+  final ValueNotifier<double> available;
+
+  @override
+  State<ValencyEquitySwitcher> createState() => _ValencyEquitySwitcherState();
+}
+
+// Logic for equity/available switching and displaying
+class _ValencyEquitySwitcherState extends State<ValencyEquitySwitcher> {
+  bool isEquityDisplaying = true;   // Equity displays by default
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onSwitch,
-      child: Text(
-        isEquity ? 'Equity' : 'Available',
-        style: const TextStyle(color: Colors.black, fontSize: 32),
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ValueListenableBuilder<double>(
+          valueListenable: isEquityDisplaying ? widget.equity : widget.available,
+          builder: (_, value, __) => Text(
+            '$value',
+            style: const TextStyle(color: Colors.black, fontSize: 96),
+          ),
+        ),
+        const SizedBox(width: 10),
+        GestureDetector(
+          onTap: () => setState(() {
+            isEquityDisplaying = !isEquityDisplaying;
+          }),
+          child: Text(
+            isEquityDisplaying ? 'Equity' : 'Available',
+            style: const TextStyle(color: Colors.black, fontSize: 32),
+          ),
+        ),
+      ],
     );
   }
 }
