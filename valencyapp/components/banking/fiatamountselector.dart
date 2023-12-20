@@ -63,21 +63,29 @@ class _ValencyFIATAmountSelectorState extends State<ValencyFIATAmountSelector> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('SELECT AMOUNT'),
-        Row(
+        const Text(   // Title Text
+          'SELECT AMOUNT',
+          style: TextStyle(
+            fontSize: 32,
+            color: Colors.grey,
+          ),
+        ),
+        
+        Row(          // User Input Area
+          mainAxisAlignment: MainAxisAlignment.center,    // TextField and DropDown are centred
           children: [
             Expanded(
-              child: TextField(   // Not using ValencyTextField, as don't want a border arount the text field
+              child: TextField(                           // Not using ValencyTextField, as don't want a border arount the text field
                 controller: widget.amountController,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 104,                  // Input text bigger than prefix
+                  fontSize: 104,                          // Input text bigger than prefix
                   fontWeight: FontWeight.bold,
                 ),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  prefixText: '\$',               // $ sign for the prefix
-                  prefixStyle: TextStyle(         // Prefix is smaller than input text
+                  prefixText: '\$',                       // $ sign for the prefix
+                  prefixStyle: TextStyle(                 // Prefix is smaller than input text
                     color: Colors.black,
                     fontSize: 64,
                     fontWeight: FontWeight.bold,
@@ -94,17 +102,22 @@ class _ValencyFIATAmountSelectorState extends State<ValencyFIATAmountSelector> {
             ),
           ],
         ),
-        Text(
+
+        Text(   // Account Balance Text
           _calculateTransactionAmountText(),
+          style: TextStyle(
+            fontSize: 32,
+            color: Colors.grey,
+          ),
         ),
       ],
     );
   }
 
   String _calculateTransactionAmountText() {
-    double amount = double.tryParse(widget.amountController.text) ?? 0.0;
+    double amount = double.tryParse(widget.amountController.text) ?? 0.0;   // If the amount is null, pass zero to it
     double convertedAmount = amount * conversionRate;
-    double newBalance = widget.currentBalanceUSD + (widget.isWithdrawal ? -convertedAmount : convertedAmount);
+    double newBalance = widget.currentBalanceUSD + (widget.isWithdrawal ? -convertedAmount : convertedAmount);    // Different calculations whether it is a deposit or withdrawal
 
     return 'This will take your account balance from \$${widget.currentBalanceUSD.toStringAsFixed(2)} to \$${newBalance.toStringAsFixed(2)}';
   }
