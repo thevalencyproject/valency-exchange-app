@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ValencyBigButton extends StatelessWidget {
-  final Function()? onTap;  // Detects button presses
-  final Color buttonColor;  // The colour of the button
-  final String hintText;    // The text displayed inside the button
-
   const ValencyBigButton({
     super.key,
     required this.onTap,
     required this.buttonColor,
     required this.hintText,
   });
+
+  final Function()? onTap;  // Detects button presses
+  final Color buttonColor;  // The colour of the button
+  final String hintText;    // The text displayed inside the button
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ValencyBigButton extends StatelessWidget {
           color: buttonColor,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
             hintText,
             style: TextStyle(
