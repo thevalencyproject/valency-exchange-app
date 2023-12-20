@@ -1,47 +1,70 @@
 import 'package:flutter/material.dart';
 
-class ValencyDropDownSelector extends StatelessWidget {
-  final controller;              // The controller that can access the selection
-  final Color borderColor;       // Border Colour
-  final List<String> options;    // The text options inside the drop down selector
-
+/* Usage:
+    -> borderColor: the colour of the border
+    -> options: an array of strings (each string = each selection) 
+    -> onSelected: a function that is executed when a new option is selected (should take a string as input)
+        -> eg. onSelected: (String selectedValue) { do something with selected value here } */
+class ValencyDropDownSelector extends StatefulWidget {
   const ValencyDropDownSelector({
-    super.key,
-    required this.controller,
+    Key? key,
+    required this.onSelected,
     required this.borderColor,
     required this.options,
-  });
+  }) : super(key: key);
 
-  int currentSelection = 1;      // The current selection (index)
+  final ValueChanged<String> onSelected;  // Callback when an option is selected
+  final Color borderColor;                // Border Colour
+  final List<String> options;             // The text options inside the drop down selector
 
-  // Gets called when an option from the drop down is selection
-  void selectOption(int selection) {
-    currentSelection = selection;
+  @override
+  _ValencyDropDownSelectorState createState() => _ValencyDropDownSelectorState();
+}
 
-    @override
-    Widget build(BuildContext context) {
-      // options[1] to get selected text
-      // this should include another onTap function for when another selection is made -> this sets currentSelection to what is pressed
+class _ValencyDropDownSelectorState extends State<ValencyDropDownSelector> {
+  String? _currentSelection;    // First selection is the first option
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.options.isNotEmpty) {
+      _currentSelection = widget.options.first;
     }
   }
 
-  // Gets called when the drop down is opened
-  void openDropDown() {
-    @override
-    Widget build(BuildContext context) {
-      // options[1] to get selected text
-      // this should include another onTap function for when another selection is made -> this sets currentSelection to what is pressed
-
-      // CALL selectOption(selection index goes here) to set selection and redraw the component
-    }
-  }
-
-  // Displayed before anything is pressed
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: openDropDown,
-      // Insert content here
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        border: Border.all(color: widget.borderColor),
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white,
+      ),
+
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          value: _currentSelection,
+          isExpanded: true,
+          icon: Icon(Icons.arrow_drop_down),
+          items: widget.options.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {
+            setState(() {
+              _currentSelection = newValue;
+            });
+            widget.onSelected(newValue!);
+          },
+          
+          // Dropdown Style
+          style: TextStyle(color: Colors.black),
+          dropdownColor: Colors.white,
+        ),
+      ),
     );
   }
 }
