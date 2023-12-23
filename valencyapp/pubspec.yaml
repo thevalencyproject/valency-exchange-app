@@ -9,6 +9,8 @@ environment:
   sdk: '>=2.19.4 <4.0.0'
 
 dependencies:
+  fl_chart: ^0.65.0
+  http: ^1.1.2
   flutter_svg: ^2.0.5
   flutter:
     sdk: flutter
