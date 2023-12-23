@@ -19,6 +19,7 @@ class _ValencyTOSState extends State<ValencyTOS> {
   String _textData = "";                                            // Place to store fetched text
   bool _isAtBottom = false;                                         // Shouldn't spawn widget already scrolled to bottom
   final ScrollController _scrollController = ScrollController();    // Handles scroll detection
+  bool _errorOccurred = false;                                      // Indicates if an error has occurred
 
   @override
   void initState() {
@@ -33,17 +34,25 @@ class _ValencyTOSState extends State<ValencyTOS> {
       if(response.statusCode = 200) {
         setState(() {
           _textData = response.body;
+          _errorOccurred = false;   // Reset error state to false (if retried successfully after unsuccessful fetch)
         });
       } else {
-        // Handle error
-        
+        // Handle error for bad response from http
+        setState(() {
+          _textData = "[NETWORK ERROR]: Plaintext TOS Unreachable using HTTP";
+          _errorOccurred = true;   // Set error state
+        });        
       }
     } catch (e) {
-      // Handle error
+      // Handle error from network
+      setState(() {
+        _textData = "[NETWORK ERROR]: Plaintext TOS Unreachable";
+        _errorOccurred = true;   // Set error state
+      });
     }
   }
 
-  void _scrollListener() {
+  void _scrollListener() {    // Checks when the user has scrolled to the bottom
     if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent && !_isAtBottom) {
       widget.onScrolledToBottom();
       setState(() {
@@ -67,13 +76,24 @@ class _ValencyTOSState extends State<ValencyTOS> {
         border: Border.all(color: Colors.blue),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: _textData.isEmpty
-        ? CircularProgressIndicator()
-        : SingleChildScrollView(
-          controller: _scrollController,
-          child: Text(_textData),
-        ),
-    
+      child: _errorOccurred
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(_textData, style: TextStyle(color: Colors.red)),
+              SizedBox(height: 20),
+              ElevatedButton(               // Display a retry button if an error has occurred
+                onPressed: _fetchTextData,  // Retry fetching the text when pressed
+                child: Text('Retry'),
+              ),
+            ],
+          )
+        : _textData.isEmpty
+            ? CircularProgressIndicator()       // Display a loading animation if no data has been loaded yet
+            : SingleChildScrollView(
+                controller: _scrollController,
+                child: Text(_textData),
+              ),
     );
   }
 }
