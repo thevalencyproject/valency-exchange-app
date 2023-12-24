@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valencyapp/structures/walletasset.dart';
 
-
 /* 
 [IMPLEMENTING IN PARENT WIDGET]
 class _ParentWidgetState extends State<ParentWidget> {
