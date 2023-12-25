@@ -26,12 +26,3 @@ class ValencyWalletAsset {
   final double pricePerToken;                             // The price per token
   double get valueOwned => amountOwned * pricePerToken;   // The value of the asset that the customer owns
 }
-
-enum DisplayRange {
-  daily,
-  weekly,
-  monthly,
-  threeMonthly,
-  yearly,
-  maximum,
-}
