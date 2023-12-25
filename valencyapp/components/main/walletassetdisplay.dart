@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valencyapp/structures/range.dart';
 import 'package:valencyapp/structures/walletasset.dart';
 
 /* 
@@ -115,7 +116,7 @@ class _ValencyWalletAssetDisplayState extends State<ValencyWalletAssetDisplay> {
             Column(                     // Asset Name and Changes
               children: [
                 Text(asset.name),
-                Text(changePercentage), // The Change Percentage
+                Text(changePercentage), // The Change Percentage + Dollar Amount Change
               ],
             ),
 
@@ -123,12 +124,13 @@ class _ValencyWalletAssetDisplayState extends State<ValencyWalletAssetDisplay> {
               child: Column(
                 children: [
                   Text("\$${asset.valueOwned.toStringAsFixed(2)}"),
-                  Text("${asset.amountOwned} units"),
+                  Text("${asset.amountOwned} ${asset.name}"),
                 ],
               ),
             ),
             
             Text("\$${asset.pricePerToken.toStringAsFixed(2)}"),    // Price per Token
+            
           ],
         ),
       ),
