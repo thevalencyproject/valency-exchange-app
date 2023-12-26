@@ -13,12 +13,12 @@ class _ParentWidgetState extends State<ParentWidget> {
     });
   }
 
-  void edit {
-    // Do something when the edit button is pressed
+  void edit(int index) {
+    // Do something when the edit button is pressed (using the index to identify which position)
   }
 
-  void close {
-    // Do something when the close button is pressed
+  void close(int index) {
+    // Do something when the close button is pressed (using the index to identify which position)
   }
 
   @override
@@ -63,8 +63,8 @@ class ValencyPositionDisplay extends StatefulWidget {
   final int visibleCount;                       // How many assets are visible in the widget before having to scroll (height control)
   final bool isSelectable;                      // If the assets are selectable or not (relayed to parent to update graphs, etc)
   final Function(DisplayRange) onRangeChange;   // Callback to notify parent
-  final Function()? editController;             // Function called when the edit button is pressed
-  final Function()? closeController;            // Function called when the close button is pressed
+  final Function(int index) editController;     // Function called when the edit button is pressed (includes position index from list)
+  final Function(int index) closeController;    // Function called when the close button is pressed (includes position index from list)
 
   @override
   _ValencyPositionDisplayState createState() => _ValencyPositionDisplayState();
@@ -156,14 +156,14 @@ class _ValencyPositionDisplayState extends State<ValencyPositionDisplay> {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: widget.editController,
+                    onPressed: widget.editController(index),
                     child: Text('Edit'),
                   ),
 
                   SizedBox(height: 2),   // Spacing between buttons
 
                   ElevatedButton(
-                    onPressed: widget.closeController,
+                    onPressed: widget.closeController(index),
                     child: Text('Close'),
                   ),
                 ],
