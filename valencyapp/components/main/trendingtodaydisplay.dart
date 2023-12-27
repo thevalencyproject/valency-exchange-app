@@ -102,4 +102,20 @@ class _ValencyTrendingTodayDisplayState extends State<ValencyTrendingTodayDispla
       ),
     );
   }
+
+  Widget slideLeftBackground() {
+    return Container(
+      color: Colors.blue,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Icon(Icons.arrow_forward, color: Colors.white),
+            SizedBox(width: 20),
+          ],
+        ),
+        alignment: Alignment.centerRight,
+      ),
+    );
+  }
 }
