@@ -33,7 +33,7 @@ class _ValencyTrendingTodayDisplayState extends State<ValencyTrendingTodayDispla
           return Dismissible(
             key: Key(widget.assets[index].name),
             background: slideRightBackground(),           // Primary Background - what shows before any swipes
-            secondaryBackground: slideLeftBakcground(),   // Secondary Background - what shows after a right swipe
+            secondaryBackground: slideLeftBackground(),   // Secondary Background - what shows after a right swipe
             onDismissed: (direction) {
               setState(() {
                 if(direction == DismissDirection.endToStart) {
