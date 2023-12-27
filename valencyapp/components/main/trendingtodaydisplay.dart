@@ -8,11 +8,18 @@ class ValencyTrendingTodayDisplay extends StatefulWidget {
     required this.assets,
     required this.visibleCount,
     required this.onRangeChange,
+    required this.buyController,
+    required this.positionController,
+    required this.detailsController,
   }) : super(key: key);
 
-  final List<ValencyTrendingToday> assets;      // The assets that will be displayed
-  final int visibleCount;                       // How many assets are visible in the widget before having to scroll (height control)
-  final Function(DisplayRange) onRangeChange;   // Buy button has been pressed
+  final List<ValencyTrendingToday> assets;        // The assets that will be displayed
+  final int visibleCount;                         // How many assets are visible in the widget before having to scroll (height control)
+  final Function(DisplayRange) onRangeChange;     // Buy button has been pressed
+  final Function(int index) buyController;        // Function called when the edit button is pressed (includes position index from list)
+  final Function(int index) positionController;   // Function called when the close button is pressed (includes position index from list)
+  final Function(int index) detailsController;    // Function called when the close button is pressed (includes position index from list)
+
 
   @override
   _ValencyTrendingTodayDisplayState createState() => _ValencyTrendingTodayDisplayState();
@@ -75,10 +82,20 @@ class _ValencyTrendingTodayDisplayState extends State<ValencyTrendingTodayDispla
           ),
 
           if(isSelected) ...[
-            // BUTTONS GO HERE
-            // 1. Buy
-            // 2. Positions
-            // 3. Details
+            ElevatedButton(
+              onPressed: widget.buyController(index),
+              child: Text('Buy'),
+            ),
+            
+            ElevatedButton(
+              onPressed: widget.positionController(index),
+              child: Text('Positions'),
+            ),
+
+            ElevatedButton(
+              onPressed: widget.detailsController(index),
+              child: Text('Details'),
+            ),
           ],
 
         ]
