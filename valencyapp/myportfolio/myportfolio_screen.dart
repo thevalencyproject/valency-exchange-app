@@ -83,7 +83,17 @@ class MyPortfolioScreen extends StatelessWidget {
                 switching: true, 
               ),
 
-              // VALENCYGRAPH GOES HERE
+              ValencyValueGraph(
+                rangeButtons: 0,
+                openingRate: 0,
+                percentageChangeShowing: true,
+                oneDayIntervals: oneDayIntervals,
+                oneWeekIntervals: oneWeekIntervals,
+                oneMonthIntervals: oneMonthIntervals,
+                threeMonthIntervals: threeMonthIntervals,
+                oneYearIntervals: oneYearIntervals,
+                maxIntervals: maxIntervals,
+              ),
 
               // VALENCY MY WALLET GOES HERE
 
