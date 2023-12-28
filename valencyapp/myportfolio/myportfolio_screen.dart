@@ -33,11 +33,11 @@ class MyPortfolioScreen extends StatelessWidget {
   });
 
   // Top of Screen
-  final int amountOfFIATFunds;           // [Uses Bandwidth] The amount of FIAT funds in the Valency account
-  final double availableAmount;          // [Calculated Locally] The total available amount (calculated by getting all my portfolio assets most recent price per asset and multiplying it by the amount of each asset)
-  final double equityAmount;             // [Calculated Locally] The total equity amount (calculated by getting all my portfolio assets most recent price per asset, multiplying it by the amount of each asset, and also adding on the current price for each position)
-  final List<double> dollarChange;       // [Calculated Locally] The total dollar change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
-  final List<double> percentageChange;   // [Calculated Locally] The total percentage change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
+  ValueNotifier<double> amountOfFIATFunds;   // [Uses Bandwidth] The amount of FIAT funds in the Valency account
+  ValueNotifier<double> availableAmount;     // [Calculated Locally] The total available amount (calculated by getting all my portfolio assets most recent price per asset and multiplying it by the amount of each asset)
+  ValueNotifier<double> equityAmount;        // [Calculated Locally] The total equity amount (calculated by getting all my portfolio assets most recent price per asset, multiplying it by the amount of each asset, and also adding on the current price for each position)
+  final List<double> dollarChange;           // [Calculated Locally] The total dollar change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
+  final List<double> percentageChange;       // [Calculated Locally] The total percentage change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
 
   // My Wallet: ~1/30th of a megabyte per asset request
   final List<double> oneDayIntervals;       // [Uses Bandwidth] Each asset price every 2 minutes for 1 day (first 720 = first asset, second 720 = second asset)
