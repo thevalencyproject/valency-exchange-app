@@ -3,6 +3,8 @@ import 'package:valencyapp/components/main/bottombar/bottombar.dart';
 import 'package:valencyapp/components/main/fundsdisplay.dart';
 import 'package:valencyapp/components/main/equitydisplay.dart';
 import 'package:valencyapp/components/main/valuegraph/valuegraph.dart';
+import 'package:valencyapp/components/main/walletassetdisplay.dart';
+import 'package:valencyapp/components/main/positiondisplay.dart';
 
 // The variables passed through should be changed to pointers!!
 class MyPortfolioScreen extends StatelessWidget {
@@ -98,12 +100,21 @@ class MyPortfolioScreen extends StatelessWidget {
               ValencyWalletAssetDisplay(
                 final List<ValencyWalletAsset> assets;        // The assets that will be displayed
                 currentRange: daily,
-                visibleCount: 4,                       // How many assets are visible in the widget before having to scroll (height control)
-                isSelectable: false,                      // If the assets are selectable or not (relayed to parent to update graphs, etc)
+                visibleCount: 4,                              // How many assets are visible in the widget before having to scroll (height control)
+                isSelectable: false,                          // If the assets are selectable or not (relayed to parent to update graphs, etc)
                 final Function(DisplayRange) onRangeChange;   // Callback to notify parent
               ),
 
               // VALENCY MY POSITIONS GOES HERE
+              ValencyPositionDisplay(
+                required this.positions,
+                visibleCount: 3,
+                isSelectable: false,
+                currentRange: daily,
+                required this.onRangeChange,
+                required this.editController,
+                required this.closeController,
+              ),
 
               ValencyBottomBar(
                 focusedIcon: 0,
