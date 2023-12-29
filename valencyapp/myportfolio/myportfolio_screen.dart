@@ -67,7 +67,7 @@ class MyPortfolioScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-            children: const[
+            children: [
 
 
 
@@ -95,7 +95,13 @@ class MyPortfolioScreen extends StatelessWidget {
                 maxIntervals: maxIntervals,
               ),
 
-              // VALENCY MY WALLET GOES HERE
+              ValencyWalletAssetDisplay(
+                final List<ValencyWalletAsset> assets;        // The assets that will be displayed
+                currentRange: daily,
+                visibleCount: 4,                       // How many assets are visible in the widget before having to scroll (height control)
+                isSelectable: false,                      // If the assets are selectable or not (relayed to parent to update graphs, etc)
+                final Function(DisplayRange) onRangeChange;   // Callback to notify parent
+              ),
 
               // VALENCY MY POSITIONS GOES HERE
 
