@@ -5,6 +5,9 @@ import 'package:valencyapp/components/main/equitydisplay.dart';
 import 'package:valencyapp/components/main/valuegraph/valuegraph.dart';
 import 'package:valencyapp/components/main/walletassetdisplay.dart';
 import 'package:valencyapp/components/main/positiondisplay.dart';
+import 'package:valencyapp/structures/range.dart';
+import 'package:valencyapp/structures/walletasset.dart';
+import 'package:valencyapp/structures/position.dart';
 
 // The variables passed through should be changed to pointers!!
 class MyPortfolioScreen extends StatelessWidget {
@@ -62,6 +65,14 @@ class MyPortfolioScreen extends StatelessWidget {
   final List<double> totalOpeningRate;         // [Calculated Locally] The total opening rate (openingRatePerContract * numberOfContracts)
   final List<double> totalCurrentRate;         // [Calculated Locally] The total current rate (currentRatePerContract * numberOfContracts)
 
+  // Combined Classes
+  final List<ValencyWalletAsset> assets = [];   // Need to fill list using input data
+  final List<ValencyPosition> positions = [];   // Need to fill list using input data
+
+  // I/O Controllers
+  void editController(int index) {}     // Uses input and positions list to determine which position is being edited
+  void closeController(int index) {}    // Uses input and positions list to determine which position is being closed
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,22 +109,21 @@ class MyPortfolioScreen extends StatelessWidget {
               ),
 
               ValencyWalletAssetDisplay(
-                final List<ValencyWalletAsset> assets;        // The assets that will be displayed
-                currentRange: daily,
+                assets: assets,                               // The assets that will be displayed
+                currentRange: daily,                          // The range that is displayed
                 visibleCount: 4,                              // How many assets are visible in the widget before having to scroll (height control)
                 isSelectable: false,                          // If the assets are selectable or not (relayed to parent to update graphs, etc)
                 final Function(DisplayRange) onRangeChange;   // Callback to notify parent
               ),
 
-              // VALENCY MY POSITIONS GOES HERE
               ValencyPositionDisplay(
-                required this.positions,
+                positions: positions,
                 visibleCount: 3,
                 isSelectable: false,
                 currentRange: daily,
                 required this.onRangeChange,
-                required this.editController,
-                required this.closeController,
+                editController: editController,
+                closeController: closeController,
               ),
 
               ValencyBottomBar(
