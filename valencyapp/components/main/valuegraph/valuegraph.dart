@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:valencyapp/structures/range.dart';
 import 'package:valencyapp/components/main/valuegraph/basegraph.dart';
 import 'package:valencyapp/components/main/valuegraph/rangebuttons.dart';
 
 /* Graph Automatically updates when data updates
     1. Can have range buttons either: On bottom of the graph(0), On top of the graph(1), or not showing(2).
     2. Can display $ amount and percentage change over the selected range(bool)
-    3. Can display the opening rate for a short position(double) */
+    3. Can display the opening rate for a short position(double) 
+
+   [PARENT IMPLEMENTATION]
+   void onRangeChange(DisplayRange newRange) {
+     // Do something with the newRange here (update asset display, etc.)
+   } 
+*/
 class ValencyValueGraph extends StatefulWidget {
   ValencyValueGraph({
     Key? key,
@@ -18,24 +25,26 @@ class ValencyValueGraph extends StatefulWidget {
     required this.threeMonthIntervals,
     required this.oneYearIntervals,
     required this.maxIntervals,
+    required this.onRangeChange,
   }) : super(key: key);
 
-  final int rangeButtons;                    // 0 = range on bottom, 1 = range on top, 2 = no range
-  final double openingRate;                  // Non-zero if there should be an opening rate showing on the graph
-  final bool percentageChangeShowing;        // If there is percentage change text showing on top of the graph
-  final List<double> oneDayIntervals;        // Each asset price every 2 minutes for 1 day (first 720 = first asset, second 720 = second asset)
-  final List<double>? oneWeekIntervals;      // Each asset price every 15 minutes for 1 week (first 672 = first asset, second 672 = second asset)
-  final List<double>? oneMonthIntervals;     // Each asset price every 30 minutes for 1 month (first 1440 = first asset, second 1440 = second asset)
-  final List<double>? threeMonthIntervals;   // Each asset price every 2 hours for 3 months (first 1080 = first asset, second 1080 = second asset)
-  final List<double>? oneYearIntervals;      // Each asset price every day for 1 year (first 365 = first asset, second 365 = second asset)
-  final List<double>? maxIntervals;          // Divide index by number of assets to get number of week intervals per asset
+  final int rangeButtons;                         // 0 = range on bottom, 1 = range on top, 2 = no range
+  final double openingRate;                       // Non-zero if there should be an opening rate showing on the graph
+  final bool percentageChangeShowing;             // If there is percentage change text showing on top of the graph
+  final List<double> oneDayIntervals;             // Each asset price every 2 minutes for 1 day (first 720 = first asset, second 720 = second asset)
+  final List<double>? oneWeekIntervals;           // Each asset price every 15 minutes for 1 week (first 672 = first asset, second 672 = second asset)
+  final List<double>? oneMonthIntervals;          // Each asset price every 30 minutes for 1 month (first 1440 = first asset, second 1440 = second asset)
+  final List<double>? threeMonthIntervals;        // Each asset price every 2 hours for 3 months (first 1080 = first asset, second 1080 = second asset)
+  final List<double>? oneYearIntervals;           // Each asset price every day for 1 year (first 365 = first asset, second 365 = second asset)
+  final List<double>? maxIntervals;               // Divide index by number of assets to get number of week intervals per asset
+  final Function(DisplayRange) onRangeChange;    // Called when the range is changed
 
   @override
   _ValencyValueGraphState createState() => _ValencyValueGraphState();
 }
 
 class _ValencyValueGraphState extends State<ValencyValueGraph> {
-  SelectedRange _selectedRange = SelectedRange.day;   // Default selected range is day
+  DisplayRange _selectedRange = DisplayRange.daily;   // Default selected range is day
 
   @override
   Widget build(BuildContext context) {
@@ -65,17 +74,17 @@ class _ValencyValueGraphState extends State<ValencyValueGraph> {
 
   List<double> _getCurrentData() {
     switch(_selectedRange) {
-      case SelectedRange.day:
+      case DisplayRange.daily:
         return widget.oneDayIntervals;
-      case SelectedRange.week:
+      case DisplayRange.weekly:
         return widget.oneWeekIntervals ?? [];
-      case SelectedRange.month:
+      case DisplayRange.monthly:
         return widget.oneMonthIntervals ?? [];
-      case SelectedRange.threeMonths:
+      case DisplayRange.threeMonthly:
         return widget.threeMonthIntervals ?? [];
-      case SelectedRange.year:
+      case DisplayRange.yearly:
         return widget.oneYearIntervals ?? [];
-      case SelectedRange.max:
+      case DisplayRange.maximum:
         return widget.maxIntervals ?? [];
       default:
         return widget.oneDayIntervals;
@@ -107,9 +116,13 @@ class _ValencyValueGraphState extends State<ValencyValueGraph> {
     );
   }
 
-  void _onRangeSelected(SelectedRange range) {
-    setState(() {
-      _selectedRange = range;
-    });
+  void _onRangeSelected(DisplayRange range) {
+    if(range != _selectedRange) {
+      setState(() {
+        _selectedRange = range;
+      });
+
+      widget.onRangeChange(range);    // Notify parent of range change  
+    }
   }
 }
