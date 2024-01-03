@@ -4,37 +4,12 @@ import 'package:valencyapp/structures/walletasset.dart';
 
 /* 
 [IMPLEMENTING IN PARENT WIDGET]
-class _ParentWidgetState extends State<ParentWidget> {
-  DisplayRange currentRange = DisplayRange.daily; // Initial range
-
-  void _updateRange(DisplayRange newRange) {
-    setState(() {
-      currentRange = newRange;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Add buttons or a dropdown to allow users to select the range
-        // For instance, a button to switch to weekly:
-        ElevatedButton(
-          onPressed: () => _updateRange(DisplayRange.weekly),
-          child: Text('Weekly'),
-        ),
-        // Your ValencyWalletAssetDisplay widget
-        ValencyWalletAssetDisplay(
-          assets: [], // Pass the actual assets here
-          visibleCount: 4,
-          isSelectable: true,
-          currentRange: currentRange, // Pass the current range
-          onRangeChange: _updateRange, // Pass the callback to handle range changes
-        ),
-      ],
-    );
-  }
-}
+ValencyWalletAssetDisplay(
+  assets: [], // Pass the actual assets here
+  visibleCount: 4,
+  isSelectable: true,
+  currentRange: currentRange, // Pass the current range
+)
 */
 class ValencyWalletAssetDisplay extends StatefulWidget {
   ValencyWalletAssetDisplay({
@@ -43,14 +18,12 @@ class ValencyWalletAssetDisplay extends StatefulWidget {
     required this.visibleCount,
     required this.isSelectable,
     required this.currentRange,
-    required this.onRangeChange,
   }) : super(key: key);
 
   final List<ValencyWalletAsset> assets;        // The assets that will be displayed
   final DisplayRange currentRange;              // The range that is displayed (changeable by parent)
   final int visibleCount;                       // How many assets are visible in the widget before having to scroll (height control)
   final bool isSelectable;                      // If the assets are selectable or not (relayed to parent to update graphs, etc)
-  final Function(DisplayRange) onRangeChange;   // Callback to notify parent
 
   @override
   _ValencyWalletAssetDisplayState createState() => _ValencyWalletAssetDisplayState();
