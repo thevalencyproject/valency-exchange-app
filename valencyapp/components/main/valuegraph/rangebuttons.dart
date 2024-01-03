@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'basegraph.dart';                  // To access the selected range
+import 'package:valencyapp/structures/range.dart';
 
 class ValencyRangeButtons extends StatelessWidget {
   const ValencyRangeButtons({
@@ -8,18 +8,18 @@ class ValencyRangeButtons extends StatelessWidget {
     required this.onRangeSelected,
   }) : super(key: key);
 
-  final SelectedRange selectedRange;
-  final Function(SelectedRange) onRangeSelected;
+  final DisplayRange selectedRange;
+  final Function(DisplayRange) onRangeSelected;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: SelectedRange.values.map((range) => _buildButton(range)).toList(),
+      children: DisplayRange.values.map((range) => _buildButton(range)).toList(),
     );
   }
 
-  Widget _buildButton(SelectedRange range) {
+  Widget _buildButton(DisplayRange range) {
     return ElevatedButton(
       onPressed: () => onRangeSelected(range),
       child: Text(_rangeToString(range)),
@@ -29,19 +29,19 @@ class ValencyRangeButtons extends StatelessWidget {
     );
   }
 
-  String _rangeToString(SelectedRange range) {
+  String _rangeToString(DisplayRange range) {
     switch(range) {
-      case SelectedRange.day:
+      case DisplayRange.daily:
         return '1D';
-      case SelectedRange.week:
+      case DisplayRange.weekly:
         return '1W';
-      case SelectedRange.month:
+      case DisplayRange.monthly:
         return '1M';
-      case SelectedRange.threeMonths:
+      case DisplayRange.threeMonthly:
         return '3M';
-      case SelectedRange.year:
+      case DisplayRange.yearly:
         return '1Y';
-      case SelectedRange.max:
+      case DisplayRange.maximum:
         return 'MAX';
       default:
         return '';
