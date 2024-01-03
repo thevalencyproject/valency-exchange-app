@@ -4,47 +4,14 @@ import 'package:valencyapp/structures/position.dart';
 
 /* 
 [IMPLEMENTING IN PARENT WIDGET]
-class _ParentWidgetState extends State<ParentWidget> {
-  DisplayRange currentRange = DisplayRange.daily; // Initial range to display
-
-  void _updateRange(DisplayRange newRange) {
-    setState(() {
-      currentRange = newRange;
-    });
-  }
-
-  void edit(int index) {
-    // Do something when the edit button is pressed (using the index to identify which position)
-  }
-
-  void close(int index) {
-    // Do something when the close button is pressed (using the index to identify which position)
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Add buttons or a dropdown to allow users to select the range
-        // For instance, a button to switch to weekly:
-        ElevatedButton(
-          onPressed: () => _updateRange(DisplayRange.weekly),
-          child: Text('Weekly'),
-        ),
-        // Your ValencyPositionDisplay widget
-        ValencyPositionDisplay(
-          assets: [], // Pass the actual assets here
-          visibleCount: 4,
-          isSelectable: true,
-          currentRange: currentRange,   // Pass the current range
-          onRangeChange: _updateRange,  // Pass the callback to handle range changes
-          editController: edit,         // Pass the edit function
-          closeController: close,       // Pass the close function
-        ),
-      ],
-    );
-  }
-}
+ValencyPositionDisplay(
+  assets: [], // Pass the actual assets here
+  visibleCount: 4,
+  isSelectable: true,
+  currentRange: currentRange,   // Pass the current range
+  editController: edit,         // Pass the edit function
+  closeController: close,       // Pass the close function
+)
 */
 class ValencyPositionDisplay extends StatefulWidget {
   ValencyPositionDisplay({
@@ -53,7 +20,6 @@ class ValencyPositionDisplay extends StatefulWidget {
     required this.visibleCount,
     required this.isSelectable,
     required this.currentRange,
-    required this.onRangeChange,
     required this.editController,
     required this.closeController,
   }) : super(key: key);
@@ -62,7 +28,6 @@ class ValencyPositionDisplay extends StatefulWidget {
   final DisplayRange currentRange;              // The range that is displayed (changeable by parent)
   final int visibleCount;                       // How many assets are visible in the widget before having to scroll (height control)
   final bool isSelectable;                      // If the assets are selectable or not (relayed to parent to update graphs, etc)
-  final Function(DisplayRange) onRangeChange;   // Callback to notify parent
   final Function(int index) editController;     // Function called when the edit button is pressed (includes position index from list)
   final Function(int index) closeController;    // Function called when the close button is pressed (includes position index from list)
 
