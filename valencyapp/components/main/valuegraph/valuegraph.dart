@@ -25,6 +25,7 @@ class ValencyValueGraph extends StatefulWidget {
     required this.threeMonthIntervals,
     required this.oneYearIntervals,
     required this.maxIntervals,
+    required this.currentRange,
     required this.onRangeChange,
   }) : super(key: key);
 
@@ -37,15 +38,22 @@ class ValencyValueGraph extends StatefulWidget {
   final List<double>? threeMonthIntervals;        // Each asset price every 2 hours for 3 months (first 1080 = first asset, second 1080 = second asset)
   final List<double>? oneYearIntervals;           // Each asset price every day for 1 year (first 365 = first asset, second 365 = second asset)
   final List<double>? maxIntervals;               // Divide index by number of assets to get number of week intervals per asset
-  final Function(DisplayRange) onRangeChange;    // Called when the range is changed
+  final DisplayRange currentRange;                // The range when the widget is built
+  final Function(DisplayRange) onRangeChange;     // Called when the range is changed
 
   @override
   _ValencyValueGraphState createState() => _ValencyValueGraphState();
 }
 
 class _ValencyValueGraphState extends State<ValencyValueGraph> {
-  DisplayRange _selectedRange = DisplayRange.daily;   // Default selected range is day
+  late DisplayRange _selectedRange;   // selectedRange is given a value in initState()
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedRange = widget.currentRange;   // Set _selectedRange to the inputed current state
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
