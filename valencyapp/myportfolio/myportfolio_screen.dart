@@ -70,36 +70,27 @@ class MyPortfolioScreen extends StatefulWidget {
 }
 
 class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
-  // Combined Classes
+  // Ranges
+  DisplayRange currentRange = DisplayRange.daily;    // Initial range
+  dynamic onRangeChange(DisplayRange newRange) {     // Called when the user changes the range using the range buttons tied with the value graph
+    setState(() {
+      currentRange = newRange;                       // Change Current Range to newRange (selected by user using the ValueGraph widget)
+    });
+  }
+  
+  // Asset + Position Data & Rebuilding
   final List<ValencyWalletAsset> assets = [];   // Need to fill list using input data
   final List<ValencyPosition> positions = [];   // Need to fill list using input data
+  void _buildAssets() {                         // Called to build the assets array (using input data)
 
-  DisplayRange currentRange = DisplayRange.daily; // Initial range
+  }
+  void _buildPositions() {                      // Called to build the positions array (using input data)
 
-  void _updateRange(DisplayRange newRange) {
-    setState(() {
-      currentRange = newRange;
-    });
   }
 
   // I/O Controllers
   void editController(int index) {}     // Uses input and positions list to determine which position is being edited
   void closeController(int index) {}    // Uses input and positions list to determine which position is being closed
-
-  // Called when the user changes the range using the range buttons tied with the value graph
-  dynamic onRangeChange(DisplayRange newRange) {
-    currentRange = newRange;    // Change Current Range to newRange
-  }
-
-  // Called to build the assets array (using input data)
-  void _buildAssets() {
-
-  }
-
-  // Called to build the positions array (using input data)
-  void _buildPositions() {
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +128,7 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
                 threeMonthIntervals: widget.threeMonthIntervals,      // Graph Data for 3 Monthly Intervals
                 oneYearIntervals: widget.oneYearIntervals,            // Graph Data for Yearly Intervals
                 maxIntervals: widget.maxIntervals,                    // Graph Data for Maximum Intervals
+                currentRange: currentRange,                           // The range that is initially displayed
                 onRangeChange: onRangeChange,                         // Callback to notify parent
               ),
 
