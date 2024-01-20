@@ -18,6 +18,7 @@ class MyPortfolioScreen extends StatefulWidget {
     required this.equityAmount,
     required this.dollarChange,
     required this.percentageChange,
+    required this.name,
     required this.oneDayIntervals,
     required this.oneWeekIntervals,
     required this.oneMonthIntervals,
@@ -45,6 +46,7 @@ class MyPortfolioScreen extends StatefulWidget {
   final List<double> percentageChange;       // [Calculated Locally] The total percentage change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
 
   // My Wallet: ~1/30th of a megabyte per asset request
+  final List<String> name;                  // [Uses Bandwidth] The name of each asset
   final List<double> oneDayIntervals;       // [Uses Bandwidth] Each asset price every 2 minutes for 1 day (first 720 = first asset, second 720 = second asset)
   final List<double> oneWeekIntervals;      // [Uses Bandwidth] Each asset price every 15 minutes for 1 week (first 672 = first asset, second 672 = second asset)
   final List<double> oneMonthIntervals;     // [Uses Bandwidth] Each asset price every 30 minutes for 1 month (first 1440 = first asset, second 1440 = second asset)
@@ -82,10 +84,58 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
   final List<ValencyWalletAsset> assets = [];   // Need to fill list using input data
   final List<ValencyPosition> positions = [];   // Need to fill list using input data
   void _buildAssets() {                         // Called to build the assets array (using input data)
+    assets.clear();   // Clear whatever is in the assets array before refilling with new data
 
+    for(int i = 0; i < numberOfAssets; i++) {
+      ValencyWalletAsset temp;
+
+      temp.name = name[i];
+      temp.icon = "images/"temp.name + "_icon.png";
+
+      temp.dailyChangePercentage = ;  // calculate from dailychangegraph
+      temp.weeklyChangePercentage = ; // calculate from weeklychangegraph
+      temp.monthlyChangePercentage = ;  // calculate from monthlychangegraph
+      temp.threeMonthlyChangePercentage = ; // calculate from threemonthlychangegraph
+      temp.yearlyChangePercentage = ;   // calculate from yearlychangegraph
+      temp.maxChangePercentage = ;  // calculate from maxchangegraph
+
+      temp.amountOwned = numberOfAssets[i];
+      temp.pricePerToken = pricePerToken[i];
+
+      assets.insert(temp);  // Insert the newly filled temporary struct to fill assets
+    }
   }
   void _buildPositions() {                      // Called to build the positions array (using input data)
+    positions.clear();   // Clear whatever is in the assets array before refilling with new data
 
+    for(int i = 0; i < numberOfAssets; i++) {
+      ValencyPosition temp;
+
+      temp.name = assetName[i];
+      temp.icon = "images/"temp.name + "_icon.png";
+
+      temp.dailyChangePercentage = ;  // calculate from dailychangegraph
+      temp.weeklyChangePercentage = ; // calculate from weeklychangegraph
+      temp.monthlyChangePercentage = ;  // calculate from monthlychangegraph
+      temp.threeMonthlyChangePercentage = ; // calculate from threemonthlychangegraph
+      temp.yearlyChangePercentage = ;   // calculate from yearlychangegraph
+      temp.maxChangePercentage = ;  // calculate from maxchangegraph
+
+      temp.openingRate = numberOfAssets[i];
+      temp.numOfContracts = pricePerToken[i];
+      temp.expiry = ; // DateTime
+      temp.leverage = ; // double
+
+      temp.currentRate = ; // double
+      temp.entryCost = ; // double
+      temp.currentValue = temp.currentRate * temp.numOfContracts; // double
+      temp.gain = temp.currentValue * temp.entryCost; // double
+
+      temp.stoploss = ;     // double
+      temp.takeprofit  = ;  // double
+
+      assets.insert(temp);  // Insert the newly filled temporary struct to fill assets
+    }
   }
 
   // I/O Controllers
