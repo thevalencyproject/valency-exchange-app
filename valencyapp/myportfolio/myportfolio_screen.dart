@@ -92,12 +92,12 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
       temp.name = name[i];
       temp.icon = "images/"temp.name + "_icon.png";
 
-      temp.dailyChangePercentage = ;  // calculate from dailychangegraph
-      temp.weeklyChangePercentage = ; // calculate from weeklychangegraph
-      temp.monthlyChangePercentage = ;  // calculate from monthlychangegraph
-      temp.threeMonthlyChangePercentage = ; // calculate from threemonthlychangegraph
-      temp.yearlyChangePercentage = ;   // calculate from yearlychangegraph
-      temp.maxChangePercentage = ;  // calculate from maxchangegraph
+      temp.dailyChangePercentage = (oneDayIntervals[i * 720] - oneDayIntervals[(i+1) * 720]) / oneDayIntervals[(i+1) * 720];  // calculate from dailychangegraph
+      temp.weeklyChangePercentage = (oneWeekIntervals[i * 672] - oneWeekIntervals[(i+1) * 672]) / oneWeekIntervals[(i+1) * 672]; // calculate from weeklychangegraph
+      temp.monthlyChangePercentage = (oneMonthIntervals[i * 1440] - oneMonthIntervals[(i+1) * 1440]) / oneMonthIntervals[(i+1) * 1440];  // calculate from monthlychangegraph
+      temp.threeMonthlyChangePercentage = (threeMonthIntervals[i * 1080] - threeMonthIntervals[(i+1) * 1080]) / threeMonthIntervals[(i+1) * 1080]; // calculate from threemonthlychangegraph
+      temp.yearlyChangePercentage = (oneYearIntervals[i * 365] - oneYearIntervals[(i+1) * 365]) / oneYearIntervals[(i+1) * 365];   // calculate from yearlychangegraph
+      temp.maxChangePercentage = (maxIntervals[i * (maxIntervals.length / numberOfAssets)] - maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets)]) / maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets)];  // calculate from maxchangegraph
 
       temp.amountOwned = numberOfAssets[i];
       temp.pricePerToken = pricePerToken[i];
