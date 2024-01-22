@@ -36,6 +36,7 @@ class MyPortfolioScreen extends StatefulWidget {
     required this.leverage,
     required this.totalOpeningRate,
     required this.totalCurrentRate,
+    required this.numberOfPositions,
   }) : super(key: key);
 
   // Top of Screen
@@ -45,14 +46,16 @@ class MyPortfolioScreen extends StatefulWidget {
   final List<double> dollarChange;           // [Calculated Locally] The total dollar change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
   final List<double> percentageChange;       // [Calculated Locally] The total percentage change for each range (first 5 values are available, last 5 values are equity)(calculated by comparing price per asset from beginning index to beginning index per asset, and multiplying each asset value by the amount owned (gotten locally from wallet))
 
+  // Global Inputs
+  final List<double> oneDayIntervals;       // [Uses Bandwidth] Each asset+position price every 2 minutes for 1 day (first 720 = first asset, second 720 = second asset)
+  final List<double> oneWeekIntervals;      // [Uses Bandwidth] Each asset+position price every 15 minutes for 1 week (first 672 = first asset, second 672 = second asset)
+  final List<double> oneMonthIntervals;     // [Uses Bandwidth] Each asset+position price every 30 minutes for 1 month (first 1440 = first asset, second 1440 = second asset)
+  final List<double> threeMonthIntervals;   // [Uses Bandwidth] Each asset+position price every 2 hours for 3 months (first 1080 = first asset, second 1080 = second asset)
+  final List<double> oneYearIntervals;      // [Uses Bandwidth] Each asset+position price every day for 1 year (first 365 = first asset, second 365 = second asset)
+  final List<double> maxIntervals;          // [Uses Bandwidth] Divide index by number of assets to get number of week intervals per asset
+
   // My Wallet: ~1/30th of a megabyte per asset request
   final List<String> name;                  // [Uses Bandwidth] The name of each asset
-  final List<double> oneDayIntervals;       // [Uses Bandwidth] Each asset price every 2 minutes for 1 day (first 720 = first asset, second 720 = second asset)
-  final List<double> oneWeekIntervals;      // [Uses Bandwidth] Each asset price every 15 minutes for 1 week (first 672 = first asset, second 672 = second asset)
-  final List<double> oneMonthIntervals;     // [Uses Bandwidth] Each asset price every 30 minutes for 1 month (first 1440 = first asset, second 1440 = second asset)
-  final List<double> threeMonthIntervals;   // [Uses Bandwidth] Each asset price every 2 hours for 3 months (first 1080 = first asset, second 1080 = second asset)
-  final List<double> oneYearIntervals;      // [Uses Bandwidth] Each asset price every day for 1 year (first 365 = first asset, second 365 = second asset)
-  final List<double> maxIntervals;          // [Uses Bandwidth] Divide index by number of assets to get number of week intervals per asset
   final List<int> numberOfAssets;           // [Calculated Locally] The number of assets in each wallet
   final List<double> pricePerToken;         // [Calculated Locally] The price of each asset in the wallet (gotten from most recent in the one day interval for each asset)
 
@@ -64,6 +67,7 @@ class MyPortfolioScreen extends StatefulWidget {
   final List<DateTime> openingDate;            // [Uses Bandwidth] The opening date of all positions
   final List<DateTime> expiryDate;             // [Uses Bandwidth] The expiration date of all positions
   final List<int> leverage;                    // [Uses Bandwidth] The leverage amount of all positions (1 = no leverage, 2 = 2x leverage, 3 = 3x leverage and so on)
+  final List<int> numberOfPositions;           // [Uses Bandwidth] The number of active positions
   final List<double> totalOpeningRate;         // [Calculated Locally] The total opening rate (openingRatePerContract * numberOfContracts)
   final List<double> totalCurrentRate;         // [Calculated Locally] The total current rate (currentRatePerContract * numberOfContracts)
 
@@ -108,18 +112,18 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
   void _buildPositions() {                      // Called to build the positions array (using input data)
     positions.clear();   // Clear whatever is in the assets array before refilling with new data
 
-    for(int i = 0; i < numberOfAssets; i++) {
+    for(int i = 0; i < numberOfPositions; i++) {
       ValencyPosition temp;
 
       temp.name = assetName[i];
       temp.icon = "images/"temp.name + "_icon.png";
 
-      temp.dailyChangePercentage = ;  // calculate from dailychangegraph
-      temp.weeklyChangePercentage = ; // calculate from weeklychangegraph
-      temp.monthlyChangePercentage = ;  // calculate from monthlychangegraph
-      temp.threeMonthlyChangePercentage = ; // calculate from threemonthlychangegraph
-      temp.yearlyChangePercentage = ;   // calculate from yearlychangegraph
-      temp.maxChangePercentage = ;  // calculate from maxchangegraph
+      temp.dailyChangePercentage = (widget.oneDayIntervals[(i + widget.numberOfAssets) * 720] - widget.oneDayIntervals[((i + widget.numberOfAssets)+1) * 720]) / widget.oneDayIntervals[((i + widget.numberOfAssets)+1) * 720];  // calculate from dailychangegraph
+      temp.weeklyChangePercentage = (widget.oneWeekIntervals[(i + widget.numberOfAssets) * 672] - widget.oneWeekIntervals[((i + widget.numberOfAssets)+1) * 672]) / widget.oneWeekIntervals[((i + widget.numberOfAssets)+1) * 672]; // calculate from weeklychangegraph
+      temp.monthlyChangePercentage = (widget.oneMonthIntervals[(i + widget.numberOfAssets) * 1440] - widget.oneMonthIntervals[((i + widget.numberOfAssets)+1) * 1440]) / widget.oneMonthIntervals[((i + widget.numberOfAssets)+1) * 1440];  // calculate from monthlychangegraph
+      temp.threeMonthlyChangePercentage = (widget.threeMonthIntervals[(i + widget.numberOfAssets) * 1080] - widget.threeMonthIntervals[((i + widget.numberOfAssets)+1) * 1080]) / widget.threeMonthIntervals[((i + widget.numberOfAssets)+1) * 1080]; // calculate from threemonthlychangegraph
+      temp.yearlyChangePercentage = (widget.oneYearIntervals[(i + widget.numberOfAssets) * 365] - widget.oneYearIntervals[((i + widget.numberOfAssets)+1) * 365]) / widget.oneYearIntervals[((i + widget.numberOfAssets)+1) * 365];   // calculate from yearlychangegraph
+      temp.maxChangePercentage = (widget.maxIntervals[i * (widget.maxIntervals.length / widget.numberOfPositions[i])] - widget.maxIntervals[(i+1) * (widget.maxIntervals.length / widget.numberOfPositions[i])]) / widget.maxIntervals[(i+1) * (widget.maxIntervals.length / widget.numberOfPositions[i])];  // calculate from maxchangegraph
 
       temp.openingRate = numberOfAssets[i];
       temp.numOfContracts = pricePerToken[i];
