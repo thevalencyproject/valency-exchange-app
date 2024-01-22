@@ -53,7 +53,7 @@ class MyPortfolioScreen extends StatefulWidget {
   final List<double> threeMonthIntervals;   // [Uses Bandwidth] Each asset price every 2 hours for 3 months (first 1080 = first asset, second 1080 = second asset)
   final List<double> oneYearIntervals;      // [Uses Bandwidth] Each asset price every day for 1 year (first 365 = first asset, second 365 = second asset)
   final List<double> maxIntervals;          // [Uses Bandwidth] Divide index by number of assets to get number of week intervals per asset
-  final int numberOfAssets;                 // [Calculated Locally] The number of assets in the wallet
+  final List<int> numberOfAssets;           // [Calculated Locally] The number of assets in each wallet
   final List<double> pricePerToken;         // [Calculated Locally] The price of each asset in the wallet (gotten from most recent in the one day interval for each asset)
 
   // My Positions: ~1.11th of a kilobyte per position request
@@ -97,7 +97,7 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
       temp.monthlyChangePercentage = (oneMonthIntervals[i * 1440] - oneMonthIntervals[(i+1) * 1440]) / oneMonthIntervals[(i+1) * 1440];  // calculate from monthlychangegraph
       temp.threeMonthlyChangePercentage = (threeMonthIntervals[i * 1080] - threeMonthIntervals[(i+1) * 1080]) / threeMonthIntervals[(i+1) * 1080]; // calculate from threemonthlychangegraph
       temp.yearlyChangePercentage = (oneYearIntervals[i * 365] - oneYearIntervals[(i+1) * 365]) / oneYearIntervals[(i+1) * 365];   // calculate from yearlychangegraph
-      temp.maxChangePercentage = (maxIntervals[i * (maxIntervals.length / numberOfAssets)] - maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets)]) / maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets)];  // calculate from maxchangegraph
+      temp.maxChangePercentage = (maxIntervals[i * (maxIntervals.length / numberOfAssets[i])] - maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets[i])]) / maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets[i])];  // calculate from maxchangegraph
 
       temp.amountOwned = numberOfAssets[i];
       temp.pricePerToken = pricePerToken[i];
