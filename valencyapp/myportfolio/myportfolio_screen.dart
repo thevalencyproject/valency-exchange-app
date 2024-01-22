@@ -89,18 +89,18 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
     for(int i = 0; i < numberOfAssets; i++) {
       ValencyWalletAsset temp;
 
-      temp.name = name[i];
+      temp.name = widget.name[i];
       temp.icon = "images/" + temp.name + "_icon.png";
 
-      temp.dailyChangePercentage = (oneDayIntervals[i * 720] - oneDayIntervals[(i+1) * 720]) / oneDayIntervals[(i+1) * 720];  // calculate from dailychangegraph
-      temp.weeklyChangePercentage = (oneWeekIntervals[i * 672] - oneWeekIntervals[(i+1) * 672]) / oneWeekIntervals[(i+1) * 672]; // calculate from weeklychangegraph
-      temp.monthlyChangePercentage = (oneMonthIntervals[i * 1440] - oneMonthIntervals[(i+1) * 1440]) / oneMonthIntervals[(i+1) * 1440];  // calculate from monthlychangegraph
-      temp.threeMonthlyChangePercentage = (threeMonthIntervals[i * 1080] - threeMonthIntervals[(i+1) * 1080]) / threeMonthIntervals[(i+1) * 1080]; // calculate from threemonthlychangegraph
-      temp.yearlyChangePercentage = (oneYearIntervals[i * 365] - oneYearIntervals[(i+1) * 365]) / oneYearIntervals[(i+1) * 365];   // calculate from yearlychangegraph
-      temp.maxChangePercentage = (maxIntervals[i * (maxIntervals.length / numberOfAssets[i])] - maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets[i])]) / maxIntervals[(i+1) * (maxIntervals.length / numberOfAssets[i])];  // calculate from maxchangegraph
+      temp.dailyChangePercentage = (widget.oneDayIntervals[i * 720] - widget.oneDayIntervals[(i+1) * 720]) / widget.oneDayIntervals[(i+1) * 720];  // calculate from dailychangegraph
+      temp.weeklyChangePercentage = (widget.oneWeekIntervals[i * 672] - widget.oneWeekIntervals[(i+1) * 672]) / widget.oneWeekIntervals[(i+1) * 672]; // calculate from weeklychangegraph
+      temp.monthlyChangePercentage = (widget.oneMonthIntervals[i * 1440] - widget.oneMonthIntervals[(i+1) * 1440]) / widget.oneMonthIntervals[(i+1) * 1440];  // calculate from monthlychangegraph
+      temp.threeMonthlyChangePercentage = (widget.threeMonthIntervals[i * 1080] - widget.threeMonthIntervals[(i+1) * 1080]) / widget.threeMonthIntervals[(i+1) * 1080]; // calculate from threemonthlychangegraph
+      temp.yearlyChangePercentage = (widget.oneYearIntervals[i * 365] - widget.oneYearIntervals[(i+1) * 365]) / widget.oneYearIntervals[(i+1) * 365];   // calculate from yearlychangegraph
+      temp.maxChangePercentage = (widget.maxIntervals[i * (widget.maxIntervals.length / widget.numberOfAssets[i])] - widget.maxIntervals[(i+1) * (widget.maxIntervals.length / widget.numberOfAssets[i])]) / widget.maxIntervals[(i+1) * (widget.maxIntervals.length / widget.numberOfAssets[i])];  // calculate from maxchangegraph
 
-      temp.amountOwned = numberOfAssets[i];
-      temp.pricePerToken = pricePerToken[i];
+      temp.amountOwned = widget.numberOfAssets[i];
+      temp.pricePerToken = widget.pricePerToken[i];
 
       assets.insert(temp);  // Insert the newly filled temporary struct to fill assets
     }
