@@ -90,7 +90,7 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
       ValencyWalletAsset temp;
 
       temp.name = name[i];
-      temp.icon = "images/"temp.name + "_icon.png";
+      temp.icon = "images/" + temp.name + "_icon.png";
 
       temp.dailyChangePercentage = (oneDayIntervals[i * 720] - oneDayIntervals[(i+1) * 720]) / oneDayIntervals[(i+1) * 720];  // calculate from dailychangegraph
       temp.weeklyChangePercentage = (oneWeekIntervals[i * 672] - oneWeekIntervals[(i+1) * 672]) / oneWeekIntervals[(i+1) * 672]; // calculate from weeklychangegraph
