@@ -66,8 +66,10 @@ class MyPortfolioScreen extends StatefulWidget {
   final List<int> numberOfContracts;           // [Uses Bandwidth] The number of contracts in all positions
   final List<DateTime> openingDate;            // [Uses Bandwidth] The opening date of all positions
   final List<DateTime> expiryDate;             // [Uses Bandwidth] The expiration date of all positions
-  final List<int> leverage;                    // [Uses Bandwidth] The leverage amount of all positions (1 = no leverage, 2 = 2x leverage, 3 = 3x leverage and so on)
+  final List<double> leverage;                 // [Uses Bandwidth] The leverage amount of all positions (1 = no leverage, 2 = 2x leverage, 3 = 3x leverage and so on)
   final List<int> numberOfPositions;           // [Uses Bandwidth] The number of active positions
+  final List<double> stopLoss;                 // [Uses Bandwidth] The point at which the positions automatically closes
+  final List<double> takeProfit;               // [Uses Bandwidth] The point at which the positions automatically closes
   final List<double> totalOpeningRate;         // [Calculated Locally] The total opening rate (openingRatePerContract * numberOfContracts)
   final List<double> totalCurrentRate;         // [Calculated Locally] The total current rate (currentRatePerContract * numberOfContracts)
 
@@ -115,8 +117,8 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
     for(int i = 0; i < numberOfPositions; i++) {
       ValencyPosition temp;
 
-      temp.name = assetName[i];
-      temp.icon = "images/"temp.name + "_icon.png";
+      temp.name = widget.assetName[i];
+      temp.icon = "images/" + temp.name + "_icon.png";
 
       temp.dailyChangePercentage = (widget.oneDayIntervals[(i + widget.numberOfAssets) * 720] - widget.oneDayIntervals[((i + widget.numberOfAssets)+1) * 720]) / widget.oneDayIntervals[((i + widget.numberOfAssets)+1) * 720];  // calculate from dailychangegraph
       temp.weeklyChangePercentage = (widget.oneWeekIntervals[(i + widget.numberOfAssets) * 672] - widget.oneWeekIntervals[((i + widget.numberOfAssets)+1) * 672]) / widget.oneWeekIntervals[((i + widget.numberOfAssets)+1) * 672]; // calculate from weeklychangegraph
@@ -125,18 +127,18 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
       temp.yearlyChangePercentage = (widget.oneYearIntervals[(i + widget.numberOfAssets) * 365] - widget.oneYearIntervals[((i + widget.numberOfAssets)+1) * 365]) / widget.oneYearIntervals[((i + widget.numberOfAssets)+1) * 365];   // calculate from yearlychangegraph
       temp.maxChangePercentage = (widget.maxIntervals[i * (widget.maxIntervals.length / widget.numberOfPositions[i])] - widget.maxIntervals[(i+1) * (widget.maxIntervals.length / widget.numberOfPositions[i])]) / widget.maxIntervals[(i+1) * (widget.maxIntervals.length / widget.numberOfPositions[i])];  // calculate from maxchangegraph
 
-      temp.openingRate = numberOfAssets[i];
-      temp.numOfContracts = pricePerToken[i];
-      temp.expiry = ; // DateTime
-      temp.leverage = ; // double
+      temp.openingRate = widget.openingRatePerContract[i];
+      temp.numOfContracts = widget.numberOfContracts[i];
+      temp.expiry = widget.expiryDate[i]; // DateTime
+      temp.leverage = widget.leverage[i]; // double
 
-      temp.currentRate = ; // double
-      temp.entryCost = ; // double
-      temp.currentValue = temp.currentRate * temp.numOfContracts; // double
-      temp.gain = temp.currentValue * temp.entryCost; // double
+      temp.currentRate = widget.currentRatePerContract[i];          // double
+      temp.entryCost = temp.openingRate * temp.numOfContracts;      // double
+      temp.currentValue = temp.currentRate * temp.numOfContracts;   // double
+      temp.gain = temp.entryCost - temp.currentValue;               // double
 
-      temp.stoploss = ;     // double
-      temp.takeprofit  = ;  // double
+      temp.stoploss = widget.stopLoss[i];       // double
+      temp.takeprofit  = widget.takeProfit[i];  // double
 
       assets.insert(temp);  // Insert the newly filled temporary struct to fill assets
     }
