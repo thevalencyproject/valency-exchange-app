@@ -86,9 +86,8 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
     });
   }
   
-  // Asset + Position Data & Rebuilding
+  // Asset Data + Rebuilding Function
   final List<ValencyWalletAsset> assets = [];   // Need to fill list using input data
-  final List<ValencyPosition> positions = [];   // Need to fill list using input data
   void _buildAssets() {     // Called to build the assets array (using input data)
     assets.clear();
 
@@ -111,6 +110,9 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
       assets.insert(temp);   // Insert the newly filled temporary struct to fill assets
     }
   }
+  
+  // Position Data + Rebuilding Function
+  final List<ValencyPosition> positions = [];   // Need to fill list using input data
   void _buildPositions() {    // Called to build the positions array (using input data)
     positions.clear();
 
@@ -193,13 +195,13 @@ class _MyPortfolioScreenState extends State<MyPortfolioScreen> {
                 assets: assets,                               // The assets that will be displayed
                 currentRange: currentRange,                   // The range that is displayed
                 visibleCount: 4,                              // 4 positions are visible in the widget before having to scroll (height control)
-                isSelectable: false,                          // The assets are not selectable
+                isSelectable: true,                           // The assets are not selectable
               ),
 
               ValencyPositionDisplay(
                 positions: positions,               // The positions that will be displayed
                 visibleCount: 3,                    // 3 positions are visible in the widget before having to scroll (height control)
-                isSelectable: false,                // The positions are not selectable
+                isSelectable: true,                 // The positions are not selectable
                 currentRange: currentRange,         // The range that is displayed (dynamically updates when MyPortfolioScreen updates value)
                 editController: editController,     // Callback to notify parent (parses position index)
                 closeController: closeController,   // Callback to notify parent (parses position index)
