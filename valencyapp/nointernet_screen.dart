@@ -17,7 +17,7 @@ class NoInternetScreen extends StatelessWidget {
               const FractionallySizedBox(widthFactor: 1, heightFactor: 0.33),  // Gap between top and content
 
               Image.asset(
-                "images/nointernet.svg",
+                "images/noInternetMonkeySad.gif",
                 height: 252.0,
                 width: 252.0,
               ),
